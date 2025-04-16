@@ -73,7 +73,7 @@ const Footer = () => {
             
             {/* Navigation Links */}
             <motion.div 
-              className="flex flex-col items-center space-y-5 mb-12"
+              className="flex flex-col items-center space-y-2 mb-12"
               variants={staggerChildren}
             >
               <motion.div variants={linkAnimation} whileHover="hover">
@@ -257,9 +257,9 @@ const Footer = () => {
                   </Link>
                 </motion.div>
                 
-                {/* Navigation links horizontal stack */}
+                {/* Navigation links vertical stack */}
                 <motion.div 
-                  className="flex items-center space-x-8"
+                  className="flex flex-col items-start space-y-1"
                   variants={staggerChildren}
                 >
                   <motion.div variants={linkAnimation} whileHover="hover">
@@ -283,16 +283,17 @@ const Footer = () => {
             
             {/* Second column - Portland section */}
             <motion.div 
-              className="w-1/3 flex flex-col items-center"
+              className="w-1/3 flex flex-row justify-center gap-12"
               variants={fadeIn}
             >
-              <div className="text-center">
+              {/* Portland Logo Section */}
+              <div className="flex flex-col items-center">
                 <p className="text-white/80 uppercase text-xs font-goudy-regular mb-3">DESARROLLA Y CONSTRUYE</p>
                 <motion.a 
                   href="https://grupoportland.com" 
                   target="_blank" 
                   rel="noopener noreferrer" 
-                  className="inline-block mb-8"
+                  className="inline-block"
                   whileHover={{ scale: 1.03 }}
                   transition={{ duration: 0.2 }}
                 >
@@ -304,7 +305,10 @@ const Footer = () => {
                     className="h-auto" 
                   />
                 </motion.a>
-                
+              </div>
+              
+              {/* Portland Social Links Section */}
+              <div className="flex flex-col items-start">
                 <p className="text-white/80 uppercase text-xs font-goudy-regular mb-4">
                   <motion.a 
                     href="https://grupoportland.com" 
@@ -318,7 +322,7 @@ const Footer = () => {
                 </p>
                 
                 <motion.div 
-                  className="flex justify-center space-x-4"
+                  className="flex flex-row items-center space-x-4"
                   variants={staggerChildren}
                 >
                   <motion.a 
@@ -334,7 +338,7 @@ const Footer = () => {
                       alt="TikTok" 
                       width={22}
                       height={22} 
-                      className="h-auto opacity-90 hover:opacity-100 transition-opacity"
+                      className="h-auto opacity-90 hover:opacity-100 transition-opacity" 
                     />
                   </motion.a>
                   <motion.a 

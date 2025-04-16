@@ -1,6 +1,31 @@
 /* Adobe Fonts */
 @import url("https://use.typekit.net/rnd6fyv.css");
 
+/* ABC Arizona Sans Fonts */
+@font-face {
+  font-family: 'ABC Arizona Sans';
+  src: url('/fonts/ABCArizonaSans-Light.woff2') format('woff2');
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'ABC Arizona Sans';
+  src: url('/fonts/ABCArizonaSans-Medium.woff2') format('woff2');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'ABC Arizona Sans';
+  src: url('/fonts/ABCArizonaSans-Bold.woff2') format('woff2');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -9,6 +34,7 @@
 :root {
   --font-seasons: "the-seasons", sans-serif;
   --font-goudy: "ltc-goudy-oldstyle-pro", serif;
+  --font-arizona: "ABC Arizona Sans", sans-serif;
 }
 
 body {
@@ -85,4 +111,27 @@ body {
   font-family: var(--font-goudy);
   font-weight: 700;
   font-style: italic;
+}
+
+/* Arizona Sans Classes */
+.font-arizona {
+  font-family: var(--font-arizona);
+}
+
+.font-arizona-light {
+  font-family: var(--font-arizona);
+  font-weight: 300;
+  font-style: normal;
+}
+
+.font-arizona-medium {
+  font-family: var(--font-arizona);
+  font-weight: 500;
+  font-style: normal;
+}
+
+.font-arizona-bold {
+  font-family: var(--font-arizona);
+  font-weight: 700;
+  font-style: normal;
 }
