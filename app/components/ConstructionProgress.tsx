@@ -69,7 +69,7 @@ const ConstructionProgress = () => {
   }, []);
 
   return (
-    <section className="relative w-full bg-[#C4C1AF] py-16 md:py-20 overflow-hidden">
+    <section className="relative w-full bg-[#C4C1AF] py-16 pb-24 md:py-20 overflow-hidden">
       <div className="container mx-auto px-4 md:px-8 max-w-[1200px]">
         <motion.div
           className="flex flex-col items-center text-center mb-12"
@@ -84,7 +84,7 @@ const ConstructionProgress = () => {
         </motion.div>
 
         <motion.div
-          className="relative w-full"
+          className="relative w-full pb-12 md:pb-24"
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           transition={{ duration: 0.8, delay: 0.2 }}

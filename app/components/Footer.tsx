@@ -64,8 +64,8 @@ const Footer = () => {
                 <Image 
                   src="/logo/logo.svg" 
                   alt="Goyena" 
-                  width={220} 
-                  height={70} 
+                  width={280} 
+                  height={90} 
                   className="h-auto" 
                 />
               </Link>
@@ -77,17 +77,17 @@ const Footer = () => {
               variants={staggerChildren}
             >
               <motion.div variants={linkAnimation} whileHover="hover">
-                <Link href="#ubicacion" className="text-base text-white font-seasons-regular uppercase tracking-wider">
+                <Link href="#ubicacion" className="text-base text-white font-acumin-light uppercase tracking-wider">
                   UBICACIÓN
                 </Link>
               </motion.div>
               <motion.div variants={linkAnimation} whileHover="hover">
-                <Link href="#proyecto" className="text-base text-white font-seasons-regular uppercase tracking-wider">
+                <Link href="#proyecto" className="text-base text-white font-acumin-light uppercase tracking-wider">
                   PROYECTO
                 </Link>
               </motion.div>
               <motion.div variants={linkAnimation} whileHover="hover">
-                <Link href="#contacto" className="text-base text-white font-seasons-regular uppercase tracking-wider">
+                <Link href="#contacto" className="text-base text-white font-acumin-light uppercase tracking-wider">
                   CONTACTO
                 </Link>
               </motion.div>
@@ -98,7 +98,7 @@ const Footer = () => {
               className="flex flex-col items-center mb-10"
               variants={fadeIn}
             >
-              <p className="text-white/80 uppercase text-xs font-goudy-regular mb-3">DESARROLLA Y CONSTRUYE</p>
+              <p className="text-white/80 uppercase text-xs font-acumin-regular mb-3">DESARROLLA Y CONSTRUYE</p>
               <motion.a 
                 href="https://grupoportland.com" 
                 target="_blank" 
@@ -116,7 +116,7 @@ const Footer = () => {
                 />
               </motion.a>
               
-              <p className="text-white/80 uppercase text-xs font-goudy-regular mb-4">
+              <p className="text-white/80 uppercase text-xs font-acumin-regular mb-4">
                 <motion.a 
                   href="https://grupoportland.com" 
                   target="_blank" 
@@ -215,7 +215,7 @@ const Footer = () => {
               </motion.div>
               
               {/* Archmonkey Section */}
-              <p className="text-white/80 uppercase text-xs font-goudy-regular mb-2">PROYECTO</p>
+              <p className="text-white/80 uppercase text-xs font-acumin-regular mb-2">PROYECTO</p>
               <motion.a 
                 href="https://archmonkey.com" 
                 target="_blank" 
@@ -223,7 +223,7 @@ const Footer = () => {
                 whileHover={{ scale: 1.03 }}
                 transition={{ duration: 0.2 }}
               >
-                <span className="text-white font-seasons-regular text-2xl uppercase tracking-wide">ARCHMONKEY</span>
+                <span className="text-white font-acumin-regular text-3xl uppercase tracking-wide">ARCHMONKEY</span>
               </motion.a>
             </motion.div>
           </div>
@@ -237,58 +237,61 @@ const Footer = () => {
           viewport={{ once: true, margin: "-100px" }}
           variants={fadeIn}
         >
-          <div className="flex justify-between">
+          <div className="flex justify-between items-start">
             {/* First column - Logo and navigation links */}
             <motion.div 
-              className="w-1/3 flex flex-col items-start"
+              className="w-1/4 flex flex-col items-start"
               variants={fadeIn}
             >
               {/* Goyena logo and navigation in a horizontal layout */}
-              <div className="flex items-center mb-8">
-                <motion.div variants={logoAnimation} className="mr-10">
+              <div className="flex items-center">
+                <motion.div variants={logoAnimation} className="mr-8">
                   <Link href="/" className="inline-block">
                     <Image 
                       src="/logo/logo.svg" 
                       alt="Goyena" 
-                      width={230} 
-                      height={80} 
+                      width={350} 
+                      height={110} 
                       className="h-auto" 
                     />
                   </Link>
                 </motion.div>
                 
-                {/* Navigation links vertical stack */}
-                <motion.div 
-                  className="flex flex-col items-start space-y-1"
-                  variants={staggerChildren}
-                >
-                  <motion.div variants={linkAnimation} whileHover="hover">
-                    <Link href="#ubicacion" className="text-sm text-white/80 font-seasons-regular uppercase tracking-wider hover:text-white transition-colors">
-                      UBICACIÓN
-                    </Link>
+                {/* Line and Navigation links vertical stack */}
+                <div className="flex items-center h-full">
+                  <motion.div 
+                    className="flex flex-col items-start space-y-[2px]"
+                    variants={staggerChildren}
+                  >
+                    <motion.div variants={linkAnimation} whileHover="hover">
+                      <Link href="#ubicacion" className="text-sm text-white/80 font-acumin-light uppercase tracking-wider hover:text-white transition-colors leading-none">
+                        UBICACIÓN
+                      </Link>
+                    </motion.div>
+                    <motion.div variants={linkAnimation} whileHover="hover">
+                      <Link href="#proyecto" className="text-sm text-white/80 font-acumin-light uppercase tracking-wider hover:text-white transition-colors leading-none">
+                        PROYECTO
+                      </Link>
+                    </motion.div>
+                    <motion.div variants={linkAnimation} whileHover="hover">
+                      <Link href="#contacto" className="text-sm text-white/80 font-acumin-light uppercase tracking-wider hover:text-white transition-colors leading-none">
+                        CONTACTO
+                      </Link>
+                    </motion.div>
                   </motion.div>
-                  <motion.div variants={linkAnimation} whileHover="hover">
-                    <Link href="#proyecto" className="text-sm text-white/80 font-seasons-regular uppercase tracking-wider hover:text-white transition-colors">
-                      PROYECTO
-                    </Link>
-                  </motion.div>
-                  <motion.div variants={linkAnimation} whileHover="hover">
-                    <Link href="#contacto" className="text-sm text-white/80 font-seasons-regular uppercase tracking-wider hover:text-white transition-colors">
-                      CONTACTO
-                    </Link>
-                  </motion.div>
-                </motion.div>
+                  <div className="w-[2px] h-24 bg-[#E5DED3] self-stretch ml-8"></div>
+                </div>
               </div>
             </motion.div>
             
             {/* Second column - Portland section */}
             <motion.div 
-              className="w-1/3 flex flex-row justify-center gap-12"
+              className="w-2/5 flex flex-row justify-center gap-8"
               variants={fadeIn}
             >
               {/* Portland Logo Section */}
               <div className="flex flex-col items-center">
-                <p className="text-white/80 uppercase text-xs font-goudy-regular mb-3">DESARROLLA Y CONSTRUYE</p>
+                <p className="text-white/80 uppercase text-xs font-acumin-regular mb-3">DESARROLLA Y CONSTRUYE</p>
                 <motion.a 
                   href="https://grupoportland.com" 
                   target="_blank" 
@@ -309,7 +312,7 @@ const Footer = () => {
               
               {/* Portland Social Links Section */}
               <div className="flex flex-col items-start">
-                <p className="text-white/80 uppercase text-xs font-goudy-regular mb-4">
+                <p className="text-white/80 uppercase text-xs font-acumin-regular mb-4">
                   <motion.a 
                     href="https://grupoportland.com" 
                     target="_blank" 
@@ -411,11 +414,12 @@ const Footer = () => {
             
             {/* Third column - Archmonkey section */}
             <motion.div 
-              className="w-1/3 flex flex-col items-end"
+              className="w-1/4 flex items-start"
               variants={fadeIn}
             >
-              <div className="text-right">
-                <p className="text-white/80 uppercase text-xs font-goudy-regular mb-3">PROYECTO</p>
+              <div className="w-[2px] h-24 bg-[#E5DED3] self-stretch ml-20 mr-8"></div>
+              <div className="text-left">
+                <p className="text-white/80 uppercase text-xs font-acumin-regular mb-3">PROYECTO</p>
                 <motion.a 
                   href="https://archmonkey.com" 
                   target="_blank" 
@@ -423,15 +427,17 @@ const Footer = () => {
                   whileHover={{ scale: 1.03 }}
                   transition={{ duration: 0.2 }}
                 >
-                  <span className="text-white font-seasons-regular text-2xl uppercase tracking-wide">ARCHMONKEY</span>
+                  <Image 
+                    src="/logo/archmonkey_logo.svg" 
+                    alt="Archmonkey" 
+                    width={230}
+                    height={48}
+                    className="h-auto" 
+                  />
                 </motion.a>
               </div>
             </motion.div>
           </div>
-          
-          {/* Vertical dividers */}
-          <div className="absolute left-1/3 top-0 bottom-0 w-px bg-white/20 -ml-2"></div>
-          <div className="absolute right-1/3 top-0 bottom-0 w-px bg-white/20 ml-2"></div>
         </motion.div>
       )}
     </footer>

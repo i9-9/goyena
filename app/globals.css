@@ -26,6 +26,15 @@
   font-display: swap;
 }
 
+/* Acumin Variable Concept Font */
+@font-face {
+  font-family: 'Acumin Variable Concept';
+  src: url('/fonts/AcuminVariableConcept.woff2') format('woff2');
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -35,6 +44,7 @@
   --font-seasons: "the-seasons", sans-serif;
   --font-goudy: "ltc-goudy-oldstyle-pro", serif;
   --font-arizona: "ABC Arizona Sans", sans-serif;
+  --font-acumin: "Acumin Variable Concept", sans-serif;
 }
 
 body {
@@ -133,5 +143,52 @@ body {
 .font-arizona-bold {
   font-family: var(--font-arizona);
   font-weight: 700;
+  font-style: normal;
+}
+
+/* Acumin Variable Concept Classes */
+.font-acumin {
+  font-family: var(--font-acumin);
+}
+
+.font-acumin-thin {
+  font-family: var(--font-acumin);
+  font-weight: 100;
+  font-style: normal;
+}
+
+.font-acumin-light {
+  font-family: var(--font-acumin);
+  font-weight: 300;
+  font-style: normal;
+}
+
+.font-acumin-regular {
+  font-family: var(--font-acumin);
+  font-weight: 400;
+  font-style: normal;
+}
+
+.font-acumin-medium {
+  font-family: var(--font-acumin);
+  font-weight: 500;
+  font-style: normal;
+}
+
+.font-acumin-semibold {
+  font-family: var(--font-acumin);
+  font-weight: 600;
+  font-style: normal;
+}
+
+.font-acumin-bold {
+  font-family: var(--font-acumin);
+  font-weight: 700;
+  font-style: normal;
+}
+
+.font-acumin-black {
+  font-family: var(--font-acumin);
+  font-weight: 900;
   font-style: normal;
 }

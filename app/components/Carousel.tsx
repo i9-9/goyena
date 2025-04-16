@@ -13,7 +13,13 @@ const Carousel = () => {
     '/images/carousel/1.png',
     '/images/carousel/2.png',
     '/images/carousel/3.png',
-    '/images/carousel/4.png',
+    '/images/carousel/5.jpg',
+    '/images/carousel/6.jpg',
+    '/images/carousel/7.jpg',
+    '/images/carousel/8.jpg',
+    '/images/carousel/9.jpg',
+    '/images/carousel/10.jpg',
+    '/images/carousel/11.jpg',
   ];
   
   // Mobile images (portrait)
@@ -21,6 +27,13 @@ const Carousel = () => {
     '/images/carousel/mobile/1_mobile.png',
     '/images/carousel/mobile/2_mobile.png',
     '/images/carousel/mobile/3_mobile.png',
+    '/images/carousel/5.jpg',
+    '/images/carousel/6.jpg',
+    '/images/carousel/7.jpg',
+    '/images/carousel/8.jpg',
+    '/images/carousel/9.jpg',
+    '/images/carousel/10.jpg',
+    '/images/carousel/11.jpg',
   ];
   
   // Determine which images to use based on screen size
@@ -43,6 +56,16 @@ const Carousel = () => {
       window.removeEventListener('resize', checkIfMobile);
     };
   }, []);
+
+  // Verify images exist before using them
+  const getImageSrc = (index: number) => {
+    if (!images || images.length === 0) {
+      return '/images/placeholder.jpg';
+    }
+    
+    const normalizedIndex = ((index % images.length) + images.length) % images.length;
+    return images[normalizedIndex] || '/images/placeholder.jpg';
+  };
 
   // Auto-advance the carousel every 5 seconds
   useEffect(() => {
@@ -74,7 +97,7 @@ const Carousel = () => {
             }}
           >
             <Image
-              src={images[(activeIndex + images.length - 1) % images.length]}
+              src={getImageSrc(activeIndex + images.length - 1)}
               alt="Previous image"
               fill
               className="object-cover"
@@ -95,7 +118,7 @@ const Carousel = () => {
               }}
             >
               <Image
-                src={images[activeIndex]}
+                src={getImageSrc(activeIndex)}
                 alt={`Carousel image ${activeIndex + 1}`}
                 fill
                 className="object-cover"
@@ -114,7 +137,7 @@ const Carousel = () => {
             }}
           >
             <Image
-              src={images[(activeIndex + 1) % images.length]}
+              src={getImageSrc(activeIndex + 1)}
               alt="Next image"
               fill
               className="object-cover"

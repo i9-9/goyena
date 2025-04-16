@@ -154,7 +154,7 @@ const BlurredText = ({ text, className, delay = 0 }: { text: string, className?:
           aria-hidden="true"
           style={{ 
             display: 'inline-block',
-            marginRight: char === ' ' ? '0.25em' : '0',
+            marginRight: char === ' ' ? '0.25em' : '0.01em',
             width: char === ' ' ? '0.25em' : 'auto'
           }}
         >
