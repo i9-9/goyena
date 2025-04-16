@@ -1,26 +1,88 @@
-@import "tailwindcss";
+/* Adobe Fonts */
+@import url("https://use.typekit.net/rnd6fyv.css");
 
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Base Styles */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  --font-seasons: "the-seasons", sans-serif;
+  --font-goudy: "ltc-goudy-oldstyle-pro", serif;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-seasons);
+  font-weight: 300;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Font Classes */
+.font-seasons {
+  font-family: var(--font-seasons);
+}
+
+.font-seasons-light {
+  font-family: var(--font-seasons);
+  font-weight: 300;
+  font-style: normal;
+}
+
+.font-seasons-light-italic {
+  font-family: var(--font-seasons);
+  font-weight: 300;
+  font-style: italic;
+}
+
+.font-seasons-regular {
+  font-family: var(--font-seasons);
+  font-weight: 400;
+  font-style: normal;
+}
+
+.font-seasons-regular-italic {
+  font-family: var(--font-seasons);
+  font-weight: 400;
+  font-style: italic;
+}
+
+.font-seasons-bold {
+  font-family: var(--font-seasons);
+  font-weight: 700;
+  font-style: normal;
+}
+
+.font-seasons-bold-italic {
+  font-family: var(--font-seasons);
+  font-weight: 700;
+  font-style: italic;
+}
+
+.font-goudy {
+  font-family: var(--font-goudy);
+}
+
+.font-goudy-regular {
+  font-family: var(--font-goudy);
+  font-weight: 400;
+  font-style: normal;
+}
+
+.font-goudy-italic {
+  font-family: var(--font-goudy);
+  font-weight: 400;
+  font-style: italic;
+}
+
+.font-goudy-bold {
+  font-family: var(--font-goudy);
+  font-weight: 700;
+  font-style: normal;
+}
+
+.font-goudy-bold-italic {
+  font-family: var(--font-goudy);
+  font-weight: 700;
+  font-style: italic;
 }
