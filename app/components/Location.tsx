@@ -46,23 +46,23 @@ const Location = () => {
               {/* Información a la derecha */}
               <div className="w-[35%] h-full bg-[#2C3424] text-white px-12 py-10 flex flex-col text-left justify-center pl-20">
                 <h3 className="text-base font-seasons-bold uppercase mb-6">Gastronomía</h3>
-                <ul className="text-[0.938rem] leading-tight space-y-2 mb-12">
-                  <li className="font-goudy-regular">Cucina Paradiso</li>
-                  <li className="font-goudy-regular">Goyena Grill</li>
-                  <li className="font-goudy-regular">Salva Cocina</li>
-                  <li className="font-goudy-regular">LUCE</li>
-                  <li className="font-goudy-regular">Tía Margarita</li>
-                  <li className="font-goudy-regular">ROSÉ Restaurant</li>
-                  <li className="font-goudy-regular">El Desembarco Caballito</li>
-                  <li className="font-goudy-regular">La Birra Bar</li>
-                  <li className="font-goudy-regular">Rapa Nui</li>
+                <ul className="text-[1.125rem] leading-tight space-y-2 mb-12">
+                  <li className="font-seasons-light">Cucina Paradiso</li>
+                  <li className="font-seasons-light">Goyena Grill</li>
+                  <li className="font-seasons-light">Salva Cocina</li>
+                  <li className="font-seasons-light">LUCE</li>
+                  <li className="font-seasons-light">Tía Margarita</li>
+                  <li className="font-seasons-light">ROSÉ Restaurant</li>
+                  <li className="font-seasons-light">El Desembarco Caballito</li>
+                  <li className="font-seasons-light">La Birra Bar</li>
+                  <li className="font-seasons-light">Rapa Nui</li>
                 </ul>
                 
                 <h3 className="text-base font-seasons-bold uppercase mb-6">Otros Servicios</h3>
-                <ul className="text-[0.938rem] leading-tight space-y-2">
-                  <li className="font-goudy-regular">Farmacity</li>
-                  <li className="font-goudy-regular">YPF</li>
-                  <li className="font-goudy-regular">Jose Maria Moreno - SUBTE E</li>
+                <ul className="text-[1.125rem] leading-tight space-y-2">
+                  <li className="font-seasons-light">Farmacity</li>
+                  <li className="font-seasons-light">YPF</li>
+                  <li className="font-seasons-light">Jose Maria Moreno - SUBTE E</li>
                 </ul>
               </div>
             </div>
@@ -86,25 +86,25 @@ const Location = () => {
                 <div className="grid grid-cols-2 gap-x-4">
                   <div>
                     <h3 className="text-base font-seasons-bold uppercase mb-3">Gastronomía</h3>
-                    <ul className="text-xs leading-tight space-y-1">
-                      <li className="font-goudy-regular">Cucina Paradiso</li>
-                      <li className="font-goudy-regular">Goyena Grill</li>
-                      <li className="font-goudy-regular">Salve Cocina</li>
-                      <li className="font-goudy-regular">LUCE</li>
-                      <li className="font-goudy-regular">Tía Margarita</li>
-                      <li className="font-goudy-regular">ROSÉ Restaurant</li>
-                      <li className="font-goudy-regular">El Desembarco Caballito</li>
-                      <li className="font-goudy-regular">La Birra Bar</li>
-                      <li className="font-goudy-regular">Rapa Nui</li>
+                    <ul className="text-sm leading-tight space-y-1">
+                      <li className="font-seasons-light">Cucina Paradiso</li>
+                      <li className="font-seasons-light">Goyena Grill</li>
+                      <li className="font-seasons-light">Salve Cocina</li>
+                      <li className="font-seasons-light">LUCE</li>
+                      <li className="font-seasons-light">Tía Margarita</li>
+                      <li className="font-seasons-light">ROSÉ Restaurant</li>
+                      <li className="font-seasons-light">El Desembarco Caballito</li>
+                      <li className="font-seasons-light">La Birra Bar</li>
+                      <li className="font-seasons-light">Rapa Nui</li>
                     </ul>
                   </div>
                   
                   <div>
                     <h3 className="text-base font-seasons-bold uppercase mb-3">Otros Servicios</h3>
-                    <ul className="text-xs leading-tight space-y-1">
-                      <li className="font-goudy-regular">Farmacity</li>
-                      <li className="font-goudy-regular">YPF</li>
-                      <li className="font-goudy-regular">JoseMaria Moreno - SUBTE E</li>
+                    <ul className="text-sm leading-tight space-y-1">
+                      <li className="font-seasons-light">Farmacity</li>
+                      <li className="font-seasons-light">YPF</li>
+                      <li className="font-seasons-light">JoseMaria Moreno - SUBTE E</li>
                     </ul>
                   </div>
                 </div>

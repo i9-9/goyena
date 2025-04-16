@@ -4,6 +4,11 @@ import Hero from './components/Hero';
 import Navbar from './components/Navbar';
 import MobileMenu from './components/MobileMenu';
 import ProjectLocation from './components/ProjectLocation';
+import Lista from './components/Lista';
+import Carousel from './components/Carousel';
+import ConstructionProgress from './components/ConstructionProgress';
+import ContactForm from './components/ContactForm';
+import Footer from './components/Footer';
 import FloatingButtons from './components/FloatingButtons';
 import { motion } from 'framer-motion';
 import { useEffect, useState } from 'react';
@@ -38,6 +43,11 @@ export default function Home() {
       <Hero />
       {!isMobile && <Navbar />}
       <ProjectLocation />
+      <Lista />
+      <Carousel />
+      <ConstructionProgress />
+      <ContactForm />
+      <Footer />
       {isMobile && <MobileMenu />}
       <FloatingButtons />
     </motion.main>
