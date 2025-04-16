@@ -69,7 +69,7 @@ const Navbar = () => {
       className="navbar-container w-full h-[6.25rem] md:block"
     >
       <nav 
-        className={`w-full h-[6.25rem] bg-[#2C3424] z-50 flex items-center transition-all duration-300 ${
+        className={`w-full h-[6.25rem] bg-[#2C3424] z-40 flex items-center transition-all duration-300 ${
           isSticky ? 'fixed top-0 left-0' : 'relative'
         }`}
       >
