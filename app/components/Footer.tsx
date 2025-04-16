@@ -243,40 +243,42 @@ const Footer = () => {
               className="w-1/3 flex flex-col items-start"
               variants={fadeIn}
             >
-              {/* Goyena logo */}
-              <motion.div variants={logoAnimation}>
-                <Link href="/" className="inline-block mb-8">
-                  <Image 
-                    src="/logo/logo.svg" 
-                    alt="Goyena" 
-                    width={230} 
-                    height={80} 
-                    className="h-auto" 
-                  />
-                </Link>
-              </motion.div>
-              
-              {/* Navigation links vertical stack */}
-              <motion.div 
-                className="flex flex-col items-start space-y-2"
-                variants={staggerChildren}
-              >
-                <motion.div variants={linkAnimation} whileHover="hover">
-                  <Link href="#ubicacion" className="text-sm text-white/80 font-seasons-regular uppercase tracking-wider hover:text-white transition-colors">
-                    UBICACIÓN
+              {/* Goyena logo and navigation in a horizontal layout */}
+              <div className="flex items-center mb-8">
+                <motion.div variants={logoAnimation} className="mr-10">
+                  <Link href="/" className="inline-block">
+                    <Image 
+                      src="/logo/logo.svg" 
+                      alt="Goyena" 
+                      width={230} 
+                      height={80} 
+                      className="h-auto" 
+                    />
                   </Link>
                 </motion.div>
-                <motion.div variants={linkAnimation} whileHover="hover">
-                  <Link href="#proyecto" className="text-sm text-white/80 font-seasons-regular uppercase tracking-wider hover:text-white transition-colors">
-                    PROYECTO
-                  </Link>
+                
+                {/* Navigation links horizontal stack */}
+                <motion.div 
+                  className="flex items-center space-x-8"
+                  variants={staggerChildren}
+                >
+                  <motion.div variants={linkAnimation} whileHover="hover">
+                    <Link href="#ubicacion" className="text-sm text-white/80 font-seasons-regular uppercase tracking-wider hover:text-white transition-colors">
+                      UBICACIÓN
+                    </Link>
+                  </motion.div>
+                  <motion.div variants={linkAnimation} whileHover="hover">
+                    <Link href="#proyecto" className="text-sm text-white/80 font-seasons-regular uppercase tracking-wider hover:text-white transition-colors">
+                      PROYECTO
+                    </Link>
+                  </motion.div>
+                  <motion.div variants={linkAnimation} whileHover="hover">
+                    <Link href="#contacto" className="text-sm text-white/80 font-seasons-regular uppercase tracking-wider hover:text-white transition-colors">
+                      CONTACTO
+                    </Link>
+                  </motion.div>
                 </motion.div>
-                <motion.div variants={linkAnimation} whileHover="hover">
-                  <Link href="#contacto" className="text-sm text-white/80 font-seasons-regular uppercase tracking-wider hover:text-white transition-colors">
-                    CONTACTO
-                  </Link>
-                </motion.div>
-              </motion.div>
+              </div>
             </motion.div>
             
             {/* Second column - Portland section */}
