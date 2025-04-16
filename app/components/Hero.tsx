@@ -100,10 +100,10 @@ const SpotlightText = ({
 // Splash Screen Component
 const SplashScreen = ({ finishLoading }: { finishLoading: () => void }) => {
   useEffect(() => {
-    // Automatically dismiss splash screen after animation (4s)
+    // Automatically dismiss splash screen after animation (3s)
     const timer = setTimeout(() => {
       finishLoading();
-    }, 4000);
+    }, 3000);
     return () => clearTimeout(timer);
   }, [finishLoading]);
 
@@ -114,7 +114,7 @@ const SplashScreen = ({ finishLoading }: { finishLoading: () => void }) => {
         className="absolute top-0 bottom-0 left-0 w-1/2 bg-[#2C3424]"
         initial={{ x: 0 }}
         animate={{ x: "-100%" }}
-        transition={{ duration: 1.5, ease: [0.65, 0, 0.35, 1], delay: 2 }}
+        transition={{ duration: 0.8, ease: [0.65, 0, 0.35, 1], delay: 1.6 }}
         style={{ originX: 0 }}
       >
         <div className="absolute top-0 right-0 bottom-0 w-[0.5px] bg-[#BDBEAE] opacity-40"></div>
@@ -125,7 +125,7 @@ const SplashScreen = ({ finishLoading }: { finishLoading: () => void }) => {
         className="absolute top-0 bottom-0 right-0 w-1/2 bg-[#2C3424]"
         initial={{ x: 0 }}
         animate={{ x: "100%" }}
-        transition={{ duration: 1.5, ease: [0.65, 0, 0.35, 1], delay: 2 }}
+        transition={{ duration: 0.8, ease: [0.65, 0, 0.35, 1], delay: 1.6 }}
         style={{ originX: 1 }}
       >
         <div className="absolute top-0 left-0 bottom-0 w-[0.5px] bg-[#BDBEAE] opacity-40"></div>
@@ -136,7 +136,7 @@ const SplashScreen = ({ finishLoading }: { finishLoading: () => void }) => {
         className="relative z-10 flex items-center justify-center"
         initial={{ opacity: 0, scale: 0.8 }}
         animate={{ opacity: 1, scale: 1 }}
-        transition={{ duration: 0.5, delay: 0.5 }}
+        transition={{ duration: 0.4, delay: 0.3 }}
         exit={{ opacity: 0, scale: 0.8 }}
       >
         <div className="w-[60px] h-[60px] bg-white" style={{ 
@@ -193,17 +193,17 @@ const Hero = () => {
           className={`relative z-10 flex flex-col items-center ${isMobile ? 'mt-[-50vh]' : ''} justify-center gap-[1.5rem] text-[#2C3424] w-full px-4`}
           initial={{ opacity: 0, y: "1.25rem" }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, ease: "easeOut", delay: loading ? 3.5 : 0 }}
+          transition={{ duration: 0.8, ease: "easeOut", delay: loading ? 2.5 : 0 }}
         >
           <motion.div
             className="flex justify-center w-full"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            transition={{ duration: 0.5, delay: loading ? 3.7 : 0.2 }}
+            transition={{ duration: 0.5, delay: loading ? 2.7 : 0.2 }}
           >
             <SpotlightText 
               className="font-goudy-regular text-sm md:text-base tracking-[0.2em] uppercase" 
-              delay={loading ? 4.5 : 1}
+              delay={loading ? 3.3 : 1}
               duration={2}
               repeatDelay={5}
             >
@@ -213,9 +213,9 @@ const Hero = () => {
           
           <motion.div
             className="w-full flex justify-center"
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.7, delay: loading ? 3.9 : 0.4 }}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 1.2, ease: "easeOut", delay: loading ? 2.9 : 0.4 }}
           >
             <div className="relative overflow-hidden">
               <Image 
@@ -234,7 +234,7 @@ const Hero = () => {
                 animate={{ x: isMobile ? 300 : 650 }}
                 transition={{
                   duration: 4,
-                  delay: loading ? 5 : 1.5,
+                  delay: loading ? 3.8 : 1.5,
                   ease: "easeInOut",
                   repeat: Infinity,
                   repeatDelay: 6
@@ -274,11 +274,11 @@ const Hero = () => {
             className="flex justify-center w-full"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            transition={{ duration: 0.5, delay: loading ? 4.1 : 0.6 }}
+            transition={{ duration: 0.5, delay: loading ? 3.1 : 0.6 }}
           >
             <SpotlightText 
               className="font-seasons-bold text-[1.25rem] md:text-[2.5rem] uppercase mt-0"
-              delay={loading ? 5.5 : 2}
+              delay={loading ? 3.4 : 2}
               duration={2}
               repeatDelay={5}
             >

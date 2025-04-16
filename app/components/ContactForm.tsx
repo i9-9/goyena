@@ -4,6 +4,41 @@ import { useState } from 'react';
 import { motion } from 'framer-motion';
 import Image from 'next/image';
 
+// Variants for staggered animations
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.1,
+      delayChildren: 0.2
+    }
+  }
+};
+
+const itemVariants = {
+  hidden: { y: 20, opacity: 0 },
+  visible: { 
+    y: 0, 
+    opacity: 1,
+    transition: {
+      duration: 0.5,
+      ease: "easeOut"
+    }
+  }
+};
+
+const fadeInUp = {
+  hidden: { opacity: 0, y: 20 },
+  visible: { 
+    opacity: 1, 
+    y: 0,
+    transition: {
+      duration: 0.6
+    }
+  }
+};
+
 const ContactForm = () => {
   const [formData, setFormData] = useState({
     nombre: '',
@@ -74,11 +109,26 @@ const ContactForm = () => {
           transition={{ duration: 0.8 }}
           viewport={{ once: true, margin: "-100px" }}
         >
-          <h2 className="font-seasons-regular text-[2.75rem] md:text-[3.5rem] text-[#2C3424] text-center mb-10">HABLEMOS</h2>
+          <motion.h2 
+            className="font-seasons-regular text-[2.75rem] md:text-[3.5rem] text-[#2C3424] text-center mb-10"
+            initial={{ opacity: 0, y: -10 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.3 }}
+            viewport={{ once: true }}
+          >
+            HABLEMOS
+          </motion.h2>
           
-          <form onSubmit={handleSubmit} className="space-y-7">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-7">
-              <div>
+          <motion.form 
+            onSubmit={handleSubmit} 
+            className="space-y-7"
+            variants={containerVariants}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+          >
+            <motion.div variants={containerVariants} className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-7">
+              <motion.div variants={itemVariants}>
                 <label htmlFor="nombre" className="text-[#2C3424] text-sm font-goudy-regular mb-1 block">Nombre*</label>
                 <input
                   type="text"
@@ -89,8 +139,8 @@ const ContactForm = () => {
                   required
                   className="w-full border-b border-[#2C3424] bg-transparent pb-1 focus:outline-none font-goudy-regular text-base"
                 />
-              </div>
-              <div>
+              </motion.div>
+              <motion.div variants={itemVariants}>
                 <label htmlFor="apellido" className="text-[#2C3424] text-sm font-goudy-regular mb-1 block">Apellido*</label>
                 <input
                   type="text"
@@ -101,11 +151,11 @@ const ContactForm = () => {
                   required
                   className="w-full border-b border-[#2C3424] bg-transparent pb-1 focus:outline-none font-goudy-regular text-base"
                 />
-              </div>
-            </div>
+              </motion.div>
+            </motion.div>
             
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-7">
-              <div>
+            <motion.div variants={containerVariants} className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-7">
+              <motion.div variants={itemVariants}>
                 <label htmlFor="telefono" className="text-[#2C3424] text-sm font-goudy-regular mb-1 block">Teléfono</label>
                 <input
                   type="tel"
@@ -115,8 +165,8 @@ const ContactForm = () => {
                   onChange={handleChange}
                   className="w-full border-b border-[#2C3424] bg-transparent pb-1 focus:outline-none font-goudy-regular text-base"
                 />
-              </div>
-              <div>
+              </motion.div>
+              <motion.div variants={itemVariants}>
                 <label htmlFor="email" className="text-[#2C3424] text-sm font-goudy-regular mb-1 block">Email</label>
                 <input
                   type="email"
@@ -127,10 +177,10 @@ const ContactForm = () => {
                   required
                   className="w-full border-b border-[#2C3424] bg-transparent pb-1 focus:outline-none font-goudy-regular text-base"
                 />
-              </div>
-            </div>
+              </motion.div>
+            </motion.div>
             
-            <div className="mt-1">
+            <motion.div variants={itemVariants} className="mt-1">
               <label htmlFor="busqueda" className="text-[#2C3424] text-sm font-goudy-regular mb-1 block">¿Qué estás buscando?</label>
               <div className="relative">
                 <select
@@ -145,15 +195,20 @@ const ContactForm = () => {
                   <option value="departamento">Departamento</option>
                   <option value="información">Información general</option>
                 </select>
-                <div className="absolute right-2 bottom-3 pointer-events-none">
+                <motion.div 
+                  className="absolute right-2 bottom-3 pointer-events-none"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ delay: 0.8 }}
+                >
                   <svg width="16" height="9" viewBox="0 0 16 9" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M1 1L8 8L15 1" stroke="#2C3424" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
                   </svg>
-                </div>
+                </motion.div>
               </div>
-            </div>
+            </motion.div>
             
-            <div className="mt-4">
+            <motion.div variants={itemVariants} className="mt-4">
               <label htmlFor="mensaje" className="text-[#2C3424] text-sm font-goudy-regular mb-1 block">Mensaje</label>
               <textarea
                 id="mensaje"
@@ -163,35 +218,60 @@ const ContactForm = () => {
                 rows={1}
                 className="w-full border-b border-[#2C3424] bg-transparent pb-1 focus:outline-none resize-none font-goudy-regular text-base"
               />
-            </div>
+            </motion.div>
             
-            <div className="flex justify-between items-center mt-10">
-              <div className="text-sm text-[#2C3424]">
+            <motion.div 
+              variants={fadeInUp}
+              className="flex justify-between items-center mt-10"
+            >
+              <motion.div 
+                className="text-sm text-[#2C3424]"
+                initial={{ opacity: 0, x: -5 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.4, delay: 1 }}
+                viewport={{ once: true }}
+              >
                 <a href="mailto:comercial@grupoportland.com" className="hover:underline font-goudy-regular">
                   comercial@grupoportland.com
                 </a>
-              </div>
-              <button
+              </motion.div>
+              <motion.button
                 type="submit"
                 disabled={isSubmitting}
                 className="bg-[#2C3424] text-white py-2 px-12 rounded-full font-seasons-regular text-sm hover:bg-opacity-90 transition-all"
+                initial={{ opacity: 0, x: 5 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.4, delay: 1.1 }}
+                viewport={{ once: true }}
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
               >
                 {isSubmitting ? 'Enviando...' : 'Enviar'}
-              </button>
-            </div>
+              </motion.button>
+            </motion.div>
             
             {submitSuccess && (
-              <div className="text-green-600 text-center font-seasons-regular">
+              <motion.div 
+                className="text-green-600 text-center font-seasons-regular"
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5 }}
+              >
                 ¡Gracias por contactarnos! Nos comunicaremos a la brevedad.
-              </div>
+              </motion.div>
             )}
             
             {submitError && (
-              <div className="text-red-600 text-center font-seasons-regular">
+              <motion.div 
+                className="text-red-600 text-center font-seasons-regular"
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5 }}
+              >
                 {submitError}
-              </div>
+              </motion.div>
             )}
-          </form>
+          </motion.form>
         </motion.div>
       </div>
     </section>
