@@ -120,7 +120,22 @@ const textFadeIn = {
 };
 
 // Character-by-character blur animation like in Lista.tsx
-const BlurredText = ({ text, className, delay = 0 }: { text: string, className?: string, delay?: number }) => {
+const BlurredText = ({ text, className, delay = 0 }: { text: React.ReactNode, className?: string, delay?: number }) => {
+  // If text is not a string, just render it directly with animation
+  if (typeof text !== 'string') {
+    return (
+      <motion.span
+        className={className}
+        initial={{ opacity: 0, filter: "blur(8px)" }}
+        whileInView={{ opacity: 1, filter: "blur(0px)" }}
+        transition={{ duration: 0.3, delay }}
+        viewport={{ once: true }}
+      >
+        {text}
+      </motion.span>
+    );
+  }
+  
   // Create an array of characters
   const characters = Array.from(text);
   
@@ -218,12 +233,19 @@ const Project = () => {
               </motion.span>
             </div>
             
-            <div className="font-goudy-regular text-[1.125rem] text-[#2C3424] leading-tight tracking-normal mb-8 md:mb-10 max-w-[90%] md:max-w-none mx-auto md:mx-0 md:px-0">
-              <BlurredText 
-                text="Goyena busca maximizar el uso del espacio en el centro de la manzana, creando un entorno residencial moderno que promueva la vida comunitaria y el contacto con la naturaleza."
-                className="font-goudy-regular"
-                delay={0.6}
-              />
+            <div className="font-arizona text-[1.125rem] text-[#2C3424] leading-tight tracking-normal mb-8 md:mb-10 max-w-[90%] md:max-w-none mx-auto md:mx-0 md:px-0">
+            <BlurredText 
+  text={
+    <>
+      Goyena busca maximizar el uso del espacio en el centro de la manzana, creando un entorno residencial moderno que
+      <br />
+      promueva la vida comunitaria y el contacto con la naturaleza.
+    </>
+  }
+  className="font-arizona"
+  delay={0.6}
+/>
+
             </div>
             
             <div className="flex flex-row justify-center md:justify-start gap-4 md:gap-3 mb-10 md:mb-0 md:mt-auto md:flex-col w-full">

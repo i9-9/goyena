@@ -60,12 +60,12 @@ const Footer = () => {
           <div className="flex flex-col items-center text-center">
             {/* Logo */}
             <motion.div variants={logoAnimation}>
-              <Link href="/" className="inline-block mb-12">
+              <Link href="/" className="inline-block mb-8">
                 <Image 
                   src="/logo/logo.svg" 
                   alt="Goyena" 
-                  width={280} 
-                  height={90} 
+                  width={400} 
+                  height={130} 
                   className="h-auto" 
                 />
               </Link>
@@ -73,7 +73,7 @@ const Footer = () => {
             
             {/* Navigation Links */}
             <motion.div 
-              className="flex flex-col items-center space-y-2 mb-12"
+              className="flex flex-col items-center space-y-4 mb-10"
               variants={staggerChildren}
             >
               <motion.div variants={linkAnimation} whileHover="hover">
@@ -93,12 +93,14 @@ const Footer = () => {
               </motion.div>
             </motion.div>
             
+            <div className="w-28 h-[1px] bg-[#E5DED3] mb-10"></div>
+            
             {/* Portland Section */}
             <motion.div 
               className="flex flex-col items-center mb-10"
               variants={fadeIn}
             >
-              <p className="text-white/80 uppercase text-xs font-acumin-regular mb-3">DESARROLLA Y CONSTRUYE</p>
+              <p className="text-white/80 uppercase text-xs font-acumin-regular mb-4">DESARROLLA Y CONSTRUYE</p>
               <motion.a 
                 href="https://grupoportland.com" 
                 target="_blank" 
@@ -116,7 +118,7 @@ const Footer = () => {
                 />
               </motion.a>
               
-              <p className="text-white/80 uppercase text-xs font-acumin-regular mb-4">
+              <p className="text-white/80 uppercase text-xs font-acumin-regular mb-6">
                 <motion.a 
                   href="https://grupoportland.com" 
                   target="_blank" 
@@ -129,7 +131,7 @@ const Footer = () => {
               
               {/* Social Icons */}
               <motion.div 
-                className="flex justify-center space-x-5 mb-10"
+                className="flex justify-center space-x-6 mb-12"
                 variants={staggerChildren}
               >
                 <motion.a 
@@ -143,8 +145,8 @@ const Footer = () => {
                   <Image 
                     src="/rrss/tiktok.svg" 
                     alt="TikTok" 
-                    width={22} 
-                    height={22} 
+                    width={24} 
+                    height={24} 
                     className="h-auto" 
                   />
                 </motion.a>
@@ -159,8 +161,8 @@ const Footer = () => {
                   <Image 
                     src="/rrss/facebook.svg" 
                     alt="Facebook" 
-                    width={22} 
-                    height={22} 
+                    width={24} 
+                    height={24} 
                     className="h-auto" 
                   />
                 </motion.a>
@@ -175,8 +177,8 @@ const Footer = () => {
                   <Image 
                     src="/rrss/instagram.svg" 
                     alt="Instagram" 
-                    width={22} 
-                    height={22} 
+                    width={24} 
+                    height={24} 
                     className="h-auto" 
                   />
                 </motion.a>
@@ -191,8 +193,8 @@ const Footer = () => {
                   <Image 
                     src="/rrss/linkedin.svg" 
                     alt="LinkedIn" 
-                    width={22} 
-                    height={22} 
+                    width={24} 
+                    height={24} 
                     className="h-auto" 
                   />
                 </motion.a>
@@ -207,15 +209,17 @@ const Footer = () => {
                   <Image 
                     src="/rrss/whatsapp.svg" 
                     alt="WhatsApp" 
-                    width={22} 
-                    height={22} 
+                    width={24} 
+                    height={24} 
                     className="h-auto" 
                   />
                 </motion.a>
               </motion.div>
               
+              <div className="w-28 h-[1px] bg-[#E5DED3] mb-10"></div>
+              
               {/* Archmonkey Section */}
-              <p className="text-white/80 uppercase text-xs font-acumin-regular mb-2">PROYECTO</p>
+              <p className="text-white/80 uppercase text-xs font-acumin-regular mb-4">PROYECTO</p>
               <motion.a 
                 href="https://archmonkey.com" 
                 target="_blank" 
@@ -223,7 +227,13 @@ const Footer = () => {
                 whileHover={{ scale: 1.03 }}
                 transition={{ duration: 0.2 }}
               >
-                <span className="text-white font-acumin-regular text-3xl uppercase tracking-wide">ARCHMONKEY</span>
+                <Image 
+                  src="/logo/archmonkey_logo.svg" 
+                  alt="Archmonkey" 
+                  width={240}
+                  height={50}
+                  className="h-auto" 
+                />
               </motion.a>
             </motion.div>
           </div>
@@ -237,61 +247,61 @@ const Footer = () => {
           viewport={{ once: true, margin: "-100px" }}
           variants={fadeIn}
         >
-          <div className="flex justify-between items-start">
+          <div className="grid grid-cols-3 gap-4">
             {/* First column - Logo and navigation links */}
             <motion.div 
-              className="w-1/4 flex flex-col items-start"
+              className="grid grid-cols-2 items-center col-span-1"
               variants={fadeIn}
             >
-              {/* Goyena logo and navigation in a horizontal layout */}
-              <div className="flex items-center">
-                <motion.div variants={logoAnimation} className="mr-8">
+              {/* Logo section */}
+              <div className="flex flex-col items-center justify-center">
+                <motion.div variants={logoAnimation}>
                   <Link href="/" className="inline-block">
                     <Image 
                       src="/logo/logo.svg" 
                       alt="Goyena" 
-                      width={350} 
-                      height={110} 
+                      width={400} 
+                      height={130} 
                       className="h-auto" 
                     />
                   </Link>
                 </motion.div>
-                
-                {/* Line and Navigation links vertical stack */}
-                <div className="flex items-center h-full">
-                  <motion.div 
-                    className="flex flex-col items-start space-y-[2px]"
-                    variants={staggerChildren}
-                  >
-                    <motion.div variants={linkAnimation} whileHover="hover">
-                      <Link href="#ubicacion" className="text-sm text-white/80 font-acumin-light uppercase tracking-wider hover:text-white transition-colors leading-none">
-                        UBICACIÓN
-                      </Link>
-                    </motion.div>
-                    <motion.div variants={linkAnimation} whileHover="hover">
-                      <Link href="#proyecto" className="text-sm text-white/80 font-acumin-light uppercase tracking-wider hover:text-white transition-colors leading-none">
-                        PROYECTO
-                      </Link>
-                    </motion.div>
-                    <motion.div variants={linkAnimation} whileHover="hover">
-                      <Link href="#contacto" className="text-sm text-white/80 font-acumin-light uppercase tracking-wider hover:text-white transition-colors leading-none">
-                        CONTACTO
-                      </Link>
-                    </motion.div>
+              </div>
+              
+              {/* Navigation links section */}
+              <div className="flex items-center justify-center h-full relative">
+                <motion.div 
+                  className="flex flex-col items-start space-y-[6px]"
+                  variants={staggerChildren}
+                >
+                  <motion.div variants={linkAnimation} whileHover="hover">
+                    <Link href="#ubicacion" className="text-sm text-white/80 font-acumin-light uppercase tracking-wider hover:text-white transition-colors leading-none">
+                      UBICACIÓN
+                    </Link>
                   </motion.div>
-                  <div className="w-[2px] h-24 bg-[#E5DED3] self-stretch ml-8"></div>
-                </div>
+                  <motion.div variants={linkAnimation} whileHover="hover">
+                    <Link href="#proyecto" className="text-sm text-white/80 font-acumin-light uppercase tracking-wider hover:text-white transition-colors leading-none">
+                      PROYECTO
+                    </Link>
+                  </motion.div>
+                  <motion.div variants={linkAnimation} whileHover="hover">
+                    <Link href="#contacto" className="text-sm text-white/80 font-acumin-light uppercase tracking-wider hover:text-white transition-colors leading-none">
+                      CONTACTO
+                    </Link>
+                  </motion.div>
+                </motion.div>
+                <div className="w-[2px] h-28 bg-[#E5DED3] absolute right-0 top-1/2 transform -translate-y-1/2"></div>
               </div>
             </motion.div>
             
             {/* Second column - Portland section */}
             <motion.div 
-              className="w-2/5 flex flex-row justify-center gap-8"
+              className="grid grid-cols-2 items-center relative col-span-1 pr-10"
               variants={fadeIn}
             >
               {/* Portland Logo Section */}
-              <div className="flex flex-col items-center">
-                <p className="text-white/80 uppercase text-xs font-acumin-regular mb-3">DESARROLLA Y CONSTRUYE</p>
+              <div className="flex flex-col items-center justify-center">
+                <p className="text-white/80 uppercase text-xs font-acumin-regular mb-4">DESARROLLA Y CONSTRUYE</p>
                 <motion.a 
                   href="https://grupoportland.com" 
                   target="_blank" 
@@ -311,8 +321,8 @@ const Footer = () => {
               </div>
               
               {/* Portland Social Links Section */}
-              <div className="flex flex-col items-start">
-                <p className="text-white/80 uppercase text-xs font-acumin-regular mb-4">
+              <div className="flex flex-col items-center justify-center">
+                <p className="text-white/80 uppercase text-xs font-acumin-regular mb-5">
                   <motion.a 
                     href="https://grupoportland.com" 
                     target="_blank" 
@@ -325,7 +335,7 @@ const Footer = () => {
                 </p>
                 
                 <motion.div 
-                  className="flex flex-row items-center space-x-4"
+                  className="flex flex-row items-center space-x-5"
                   variants={staggerChildren}
                 >
                   <motion.a 
@@ -410,16 +420,16 @@ const Footer = () => {
                   </motion.a>
                 </motion.div>
               </div>
+              <div className="w-[2px] h-28 bg-[#E5DED3] absolute right-0 top-1/2 transform -translate-y-1/2"></div>
             </motion.div>
             
             {/* Third column - Archmonkey section */}
             <motion.div 
-              className="w-1/4 flex items-start"
+              className="flex items-start justify-start col-span-1 pl-10"
               variants={fadeIn}
             >
-              <div className="w-[2px] h-24 bg-[#E5DED3] self-stretch ml-20 mr-8"></div>
-              <div className="text-left">
-                <p className="text-white/80 uppercase text-xs font-acumin-regular mb-3">PROYECTO</p>
+              <div className="flex flex-col items-start justify-start">
+                <p className="text-white/80 uppercase text-xs font-acumin-regular mb-4">PROYECTO</p>
                 <motion.a 
                   href="https://archmonkey.com" 
                   target="_blank" 
@@ -430,8 +440,8 @@ const Footer = () => {
                   <Image 
                     src="/logo/archmonkey_logo.svg" 
                     alt="Archmonkey" 
-                    width={230}
-                    height={48}
+                    width={240}
+                    height={50}
                     className="h-auto" 
                   />
                 </motion.a>

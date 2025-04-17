@@ -12,7 +12,9 @@ const ProjectLocation = () => {
         <Location />
         
         {/* Línea separadora */}
-        <div className="w-full h-px bg-[#2C3424]/20 my-10 md:my-12"></div>
+        <div className="max-w-[1200px] mx-auto px-6 md:px-8">
+          <div className="w-full h-px bg-[#2C3424]/30 my-12 md:my-16"></div>
+        </div>
         
         {/* Sección Proyecto */}
         <Project />

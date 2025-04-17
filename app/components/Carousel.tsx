@@ -7,6 +7,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 const Carousel = () => {
   const [activeIndex, setActiveIndex] = useState(0);
   const [isMobile, setIsMobile] = useState(false);
+  const [direction, setDirection] = useState(1); // 1 for forward, -1 for backward
   
   // Desktop images (landscape)
   const desktopImages = [
@@ -70,6 +71,7 @@ const Carousel = () => {
   // Auto-advance the carousel every 5 seconds
   useEffect(() => {
     const interval = setInterval(() => {
+      setDirection(1);
       setActiveIndex((current) => (current === images.length - 1 ? 0 : current + 1));
     }, 5000);
     
@@ -78,7 +80,36 @@ const Carousel = () => {
 
   // Handle manual navigation
   const goToSlide = (index: number) => {
+    setDirection(index > activeIndex ? 1 : -1);
     setActiveIndex(index);
+  };
+
+  // Animation variants for smoother transitions
+  const variants = {
+    enter: (direction: number) => ({
+      x: direction > 0 ? '5%' : '-5%',
+      opacity: 0,
+      scale: 0.98,
+    }),
+    center: {
+      x: 0,
+      opacity: 1,
+      scale: 1,
+      transition: {
+        x: { type: 'spring', stiffness: 300, damping: 30 },
+        opacity: { duration: 0.6 },
+        scale: { duration: 0.4 }
+      }
+    },
+    exit: (direction: number) => ({
+      x: direction > 0 ? '-5%' : '5%',
+      opacity: 0,
+      scale: 0.98,
+      transition: {
+        x: { type: 'spring', stiffness: 300, damping: 30 },
+        opacity: { duration: 0.4 }
+      }
+    })
   };
 
   return (
@@ -88,12 +119,23 @@ const Carousel = () => {
         {/* Create staggered image stack effect */}
         <div className="relative h-full w-full flex justify-center items-center">
           {/* Left side image */}
-          <div 
+          <motion.div 
             className="absolute w-[90%] h-[90%] z-10 shadow-2xl"
             style={{ 
-              transform: 'perspective(1000px) translateX(-20%) scale(0.9)',
               left: '5%',
               boxShadow: '0 8px 30px rgba(0, 0, 0, 0.3)'
+            }}
+            animate={{
+              x: '-20%',
+              scale: 0.9,
+              opacity: 0.85,
+              rotateY: '3deg'
+            }}
+            transition={{
+              type: 'spring',
+              stiffness: 250,
+              damping: 30,
+              duration: 0.8
             }}
           >
             <Image
@@ -102,19 +144,24 @@ const Carousel = () => {
               fill
               className="object-cover"
             />
-          </div>
+          </motion.div>
           
           {/* Main carousel image (center) */}
-          <AnimatePresence mode="wait">
+          <AnimatePresence mode="wait" custom={direction} initial={false}>
             <motion.div
               key={activeIndex}
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              transition={{ duration: 0.5 }}
+              custom={direction}
+              variants={variants}
+              initial="enter"
+              animate="center"
+              exit="exit"
               className="absolute w-full h-full z-30 shadow-2xl"
               style={{ 
                 boxShadow: '0 15px 50px rgba(0, 0, 0, 0.4)'
+              }}
+              transition={{
+                x: { type: 'spring', stiffness: 300, damping: 30 },
+                opacity: { duration: 0.6 }
               }}
             >
               <Image
@@ -128,12 +175,23 @@ const Carousel = () => {
           </AnimatePresence>
           
           {/* Right side image */}
-          <div 
+          <motion.div 
             className="absolute w-[90%] h-[90%] z-20 shadow-2xl"
             style={{ 
-              transform: 'perspective(1000px) translateX(20%) scale(0.9)',
               right: '5%',
               boxShadow: '0 8px 30px rgba(0, 0, 0, 0.3)'
+            }}
+            animate={{
+              x: '20%',
+              scale: 0.9,
+              opacity: 0.85,
+              rotateY: '-3deg'
+            }}
+            transition={{
+              type: 'spring',
+              stiffness: 250,
+              damping: 30,
+              duration: 0.8
             }}
           >
             <Image
@@ -142,7 +200,7 @@ const Carousel = () => {
               fill
               className="object-cover"
             />
-          </div>
+          </motion.div>
         </div>
       </div>
 

@@ -31,39 +31,41 @@ const FloatingButtons = () => {
   };
 
   return (
-    <div className="fixed right-[1.5rem] bottom-[1.5rem] z-50 flex flex-col gap-[1rem]">
+    <div className="fixed right-[1.5rem] bottom-[1.5rem] z-50 flex flex-col gap-[0.2rem]">
       <AnimatePresence>
         {showScrollButton && (
           <motion.button
-            className="w-[4.5rem] h-[4.5rem] bg-[#2C3424] rounded-full flex items-center justify-center shadow-lg hover:opacity-90 transition-all"
+            className="w-[6rem] h-[2.2rem] flex items-center justify-center"
             onClick={scrollToTop}
-            initial={{ opacity: 0, scale: 0.5 }}
-            animate={{ opacity: 1, scale: 1 }}
-            exit={{ opacity: 0, scale: 0.5 }}
-            whileHover={{ y: -3 }}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            whileHover={{ y: -1.5 }}
+            transition={{ duration: 0.4 }}
             aria-label="Volver arriba"
           >
             <img 
               src="/images/buttons/scroll.svg"
               alt="Scroll to top"
-              className="w-12 h-12"
+              className="w-16 h-16"
             />
           </motion.button>
         )}
       </AnimatePresence>
       
       <motion.button
-        className="w-[4.5rem] h-[4.5rem] bg-[#2C3424] rounded-full flex items-center justify-center shadow-lg hover:opacity-90 transition-all"
+        className="w-[6rem] h-[6rem] flex items-center justify-center"
         onClick={openWhatsApp}
-        initial={{ opacity: 0, scale: 0.5 }}
-        animate={{ opacity: 1, scale: 1 }}
-        whileHover={{ y: -3 }}
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        whileHover={{ y: -1.5 }}
+        transition={{ duration: 0.4 }}
         aria-label="Contactar por WhatsApp"
       >
         <img 
           src="/images/buttons/whatsapp.svg"
           alt="WhatsApp"
-          className="w-12 h-12"
+          className="w-16 h-16"
         />
       </motion.button>
     </div>

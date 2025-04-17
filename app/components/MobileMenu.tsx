@@ -92,7 +92,7 @@ const MobileMenu = () => {
                 >
                   <Link 
                     href={item.href} 
-                    className="font-arizona-light text-[1.5rem] text-[#768064] tracking-[0.2em] uppercase leading-none"
+                    className="font-seasons-bold text-[1.5rem] text-[#768064] tracking-normal uppercase leading-none"
                     onClick={() => setIsOpen(false)}
                   >
                     {item.label}

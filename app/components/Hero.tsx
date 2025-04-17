@@ -190,7 +190,7 @@ const Hero = () => {
           />
         </div>
         <motion.div 
-          className={`relative z-10 flex flex-col items-center ${isMobile ? 'mt-[-50vh]' : ''} justify-center gap-[1.5rem] text-[#2C3424] w-full px-4`}
+          className={`relative z-10 flex flex-col items-center ${isMobile ? 'mt-[-50vh]' : 'mt-[-20vh]'} justify-center gap-[4.3rem] text-[#2C3424] w-full px-4`}
           initial={{ opacity: 0, y: "1.25rem" }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, ease: "easeOut", delay: loading ? 2.5 : 0 }}

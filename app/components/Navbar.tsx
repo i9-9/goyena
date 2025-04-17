@@ -79,8 +79,7 @@ const Navbar = () => {
               <li key={item.href}>
                 <Link 
                   href={item.href} 
-                  className="font-arizona-light text-base text-[#768064] tracking-normal uppercase hover:opacity-80 transition-opacity leading-none"
-
+                  className="font-seasons-bold text-base text-[#768064] tracking-normal uppercase hover:opacity-80 transition-opacity leading-none"
                 >
                   {item.label}
                 </Link>
