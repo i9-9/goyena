@@ -108,12 +108,15 @@ const Lista = () => {
   };
   
   return (
-    <div className="relative w-full h-screen">
+    <section aria-labelledby="lista-section-title" className="relative w-full h-screen">
+      {/* Hidden H1 for SEO and screen readers */}
+      <h1 id="lista-section-title" className="sr-only">Goyena - Casas Urbanas y Departamentos en Caballito</h1>
+      
       {/* Background Image */}
       <div className="absolute inset-0 z-0">
         <Image
           src="/images/lista/bg_lista.png"
-          alt="Background"
+          alt="Vista panorámica del proyecto Goyena en Caballito"
           fill
           className="object-cover object-center"
           priority
@@ -129,6 +132,7 @@ const Lista = () => {
         viewport={{ once: true, margin: "-100px" }}
       >
         <div className="max-w-[600px]">
+          <h2 className="sr-only">Características del proyecto</h2>
           <div className="space-y-6">
             {[
               { number: 1, text: "Casas urbanas" },
@@ -155,7 +159,7 @@ const Lista = () => {
                   <span className="font-seasons-light text-lg">{item.number}</span>
                 </motion.div>
                 <motion.span 
-                  className="text-xl md:text-2xl text-white font-goudy-regular"
+                  className="text-2xl md:text-2xl text-white font-goudy-regular"
                   custom={index}
                   variants={textVariants}
                 >
@@ -188,11 +192,11 @@ const Lista = () => {
           <div className="mb-3">
             <AnimatedText 
               text="Naturaleza" 
-              className="text-sm md:text-base uppercase tracking-wider font-goudy-regular"
+              className="text-base md:text-base uppercase tracking-wider font-goudy-regular"
               delay={0.2}
             />
           </div>
-          <h2 className="text-3xl md:text-5xl lg:text-6xl font-seasons-regular uppercase leading-tight mb-2">
+          <h2 className="text-5xl lg:text-6xl font-seasons-regular uppercase leading-tight mb-2">
             <AnimatedText 
               text="Un jardín" 
               className="block"
@@ -217,13 +221,13 @@ const Lista = () => {
           <div className="mt-2">
             <AnimatedText 
               text="Ciudad" 
-              className="text-sm md:text-base uppercase tracking-wider font-goudy-regular"
+              className="text-base md:text-base uppercase tracking-wider font-goudy-regular"
               delay={2.5}
             />
           </div>
         </div>
       </motion.div>
-    </div>
+    </section>
   );
 };
 

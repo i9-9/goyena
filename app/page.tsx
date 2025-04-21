@@ -12,6 +12,54 @@ import Footer from './components/Footer';
 import FloatingButtons from './components/FloatingButtons';
 import { motion } from 'framer-motion';
 import { useEffect, useState } from 'react';
+import Script from 'next/script';
+
+// Datos estructurados para SEO
+const structuredDataString = `{
+  "@context": "https://schema.org",
+  "@type": "RealEstateAgent",
+  "name": "Goyena",
+  "url": "https://www.goyena.com.ar",
+  "logo": "https://www.goyena.com.ar/logo/logo.svg",
+  "description": "Proyecto residencial moderno con casas urbanas y departamentos con amplios espacios verdes en Caballito.",
+  "address": {
+    "@type": "PostalAddress",
+    "addressCountry": "Argentina",
+    "addressRegion": "CABA",
+    "addressLocality": "Caballito",
+    "streetAddress": "Pedro Goyena"
+  },
+  "contactPoint": {
+    "@type": "ContactPoint",
+    "telephone": "+541112345678",
+    "contactType": "sales"
+  },
+  "makesOffer": {
+    "@type": "Offer",
+    "itemOffered": {
+      "@type": "Residence",
+      "name": "Casas Urbanas y Departamentos Goyena",
+      "description": "Proyecto residencial moderno con 68 casas urbanas y 43 departamentos con amplios espacios verdes en Caballito.",
+      "amenityFeature": [
+        {
+          "@type": "LocationFeatureSpecification",
+          "name": "Espacios verdes",
+          "value": "1000 m²"
+        },
+        {
+          "@type": "LocationFeatureSpecification",
+          "name": "Unidades",
+          "value": "Casas urbanas y departamentos"
+        },
+        {
+          "@type": "LocationFeatureSpecification",
+          "name": "Ambientes",
+          "value": "2, 3, 4 y 5 ambientes"
+        }
+      ]
+    }
+  }
+}`;
 
 export default function Home() {
   const [isMobile, setIsMobile] = useState(false);
@@ -34,22 +82,29 @@ export default function Home() {
   }, []);
 
   return (
-    <motion.main 
-      className="relative w-full min-h-screen"
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      transition={{ duration: 0.5 }}
-    >
-      <Hero />
-      {!isMobile && <Navbar />}
-      <ProjectLocation />
-      <Lista />
-      <Carousel />
-      <ConstructionProgress />
-      <ContactForm />
-      <Footer />
-      {isMobile && <MobileMenu />}
-      <FloatingButtons />
-    </motion.main>
+    <>
+      <Script 
+        id="schema-structured-data"
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: structuredDataString }}
+      />
+      <motion.main 
+        className="relative w-full min-h-screen"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 0.5 }}
+      >
+        <Hero />
+        {!isMobile && <Navbar />}
+        <ProjectLocation />
+        <Lista />
+        <Carousel />
+        <ConstructionProgress />
+        <ContactForm />
+        <Footer />
+        {isMobile && <MobileMenu />}
+        <FloatingButtons />
+      </motion.main>
+    </>
   );
 }

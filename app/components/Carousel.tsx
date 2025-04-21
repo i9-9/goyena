@@ -120,7 +120,7 @@ const Carousel = () => {
         <div className="relative h-full w-full flex justify-center items-center">
           {/* Left side image */}
           <motion.div 
-            className="absolute w-[90%] h-[90%] z-10 shadow-2xl"
+            className="absolute w-[90%] h-[90%] z-10 shadow-2xl cursor-pointer"
             style={{ 
               left: '5%',
               boxShadow: '0 8px 30px rgba(0, 0, 0, 0.3)'
@@ -137,6 +137,11 @@ const Carousel = () => {
               damping: 30,
               duration: 0.8
             }}
+            onClick={() => {
+              setDirection(-1);
+              setActiveIndex((current) => (current === 0 ? images.length - 1 : current - 1));
+            }}
+            whileHover={{ scale: 0.92, opacity: 0.9 }}
           >
             <Image
               src={getImageSrc(activeIndex + images.length - 1)}
@@ -176,7 +181,7 @@ const Carousel = () => {
           
           {/* Right side image */}
           <motion.div 
-            className="absolute w-[90%] h-[90%] z-20 shadow-2xl"
+            className="absolute w-[90%] h-[90%] z-20 shadow-2xl cursor-pointer"
             style={{ 
               right: '5%',
               boxShadow: '0 8px 30px rgba(0, 0, 0, 0.3)'
@@ -193,6 +198,11 @@ const Carousel = () => {
               damping: 30,
               duration: 0.8
             }}
+            onClick={() => {
+              setDirection(1);
+              setActiveIndex((current) => (current === images.length - 1 ? 0 : current + 1));
+            }}
+            whileHover={{ scale: 0.92, opacity: 0.9 }}
           >
             <Image
               src={getImageSrc(activeIndex + 1)}

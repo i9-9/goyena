@@ -250,7 +250,7 @@ const Project = () => {
             
             <div className="flex flex-row justify-center md:justify-start gap-4 md:gap-3 mb-10 md:mb-0 md:mt-auto md:flex-col w-full">
               <motion.button 
-                className="bg-[#959581] border border-[#2C3424]/20 text-white font-seasons-light text-[0.875rem] md:text-[1rem] uppercase tracking-[0.1em] py-[0.3rem] md:py-[0.375rem] px-[1.25rem] md:px-[1.5rem] rounded-full transition-opacity hover:opacity-80 w-fit"
+                className="bg-[#959581] border border-[#2C3424]/20 text-white font-seasons-light text-[0.875rem] md:text-[1rem] uppercase tracking-[0.1em] py-[0.3rem] md:py-[0.375rem] px-[1.25rem] md:px-[1.5rem] rounded-full transition-all hover:bg-[#2C3424] w-fit"
                 custom={1.0}
                 variants={textFadeIn}
                 initial="hidden"
@@ -262,7 +262,7 @@ const Project = () => {
                 Descargar Plantas
               </motion.button>
               <motion.button 
-                className="bg-[#959581] border border-[#2C3424]/20 text-white font-seasons-light text-[0.875rem] md:text-[1rem] uppercase tracking-[0.1em] py-[0.3rem] md:py-[0.375rem] px-[1.25rem] md:px-[1.5rem] rounded-full transition-opacity hover:opacity-80 w-fit"
+                className="bg-[#959581] border border-[#2C3424]/20 text-white font-seasons-light text-[0.875rem] md:text-[1rem] uppercase tracking-[0.1em] py-[0.3rem] md:py-[0.375rem] px-[1.25rem] md:px-[1.5rem] rounded-full transition-all hover:bg-[#2C3424] w-fit"
                 custom={1.2}
                 variants={textFadeIn}
                 initial="hidden"
