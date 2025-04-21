@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import Image from 'next/image';
 
 const FloatingButtons = () => {
   const [showScrollButton, setShowScrollButton] = useState(false);
@@ -44,9 +45,11 @@ const FloatingButtons = () => {
             transition={{ duration: 0.4 }}
             aria-label="Volver arriba"
           >
-            <img 
+            <Image 
               src="/images/buttons/scroll.svg"
               alt="Scroll to top"
+              width={64}
+              height={64}
               className="w-16 h-16"
             />
           </motion.button>
@@ -62,9 +65,11 @@ const FloatingButtons = () => {
         transition={{ duration: 0.4 }}
         aria-label="Contactar por WhatsApp"
       >
-        <img 
+        <Image 
           src="/images/buttons/whatsapp.svg"
           alt="WhatsApp"
+          width={64}
+          height={64}
           className="w-16 h-16"
         />
       </motion.button>

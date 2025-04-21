@@ -2,6 +2,7 @@
 
 import Image from 'next/image';
 import { useState, useEffect } from 'react';
+import useLazyLoad from '../../hooks/useLazyLoad';
 
 interface SeoImageProps {
   src: string;
@@ -12,6 +13,9 @@ interface SeoImageProps {
   className?: string;
   priority?: boolean;
   sizes?: string;
+  lazyLoad?: boolean;
+  lazyThreshold?: number;
+  lazyRootMargin?: string;
 }
 
 const SeoImage = ({
@@ -22,10 +26,20 @@ const SeoImage = ({
   fill = false,
   className = '',
   priority = false,
-  sizes
+  sizes,
+  lazyLoad = true,
+  lazyThreshold = 0.1,
+  lazyRootMargin = '200px'
 }: SeoImageProps) => {
   const [loaded, setLoaded] = useState(false);
   const [error, setError] = useState(false);
+  
+  // Use lazy loading hook if not priority
+  const { ref, isVisible } = useLazyLoad({
+    threshold: lazyThreshold,
+    rootMargin: lazyRootMargin,
+    triggerOnce: true
+  });
   
   // Create a descriptive alt text if missing
   const safeAlt = alt || 'Imagen del proyecto Goyena en Caballito';
@@ -46,30 +60,34 @@ const SeoImage = ({
     console.error(`Failed to load image: ${src}`);
   };
 
+  // Skip rendering until image is visible in viewport (unless priority is true)
+  const shouldRender = priority || !lazyLoad || isVisible;
+
   return (
-    <>
-      {!error ? (
-        <div className={`${className} ${!loaded ? 'bg-gray-200 animate-pulse' : ''}`}>
-          <Image
-            src={src}
-            alt={safeAlt}
-            width={fill ? undefined : (width || 400)}
-            height={fill ? undefined : (height || 300)}
-            fill={fill}
-            className={`${className} ${loaded ? 'opacity-100' : 'opacity-0'} transition-opacity duration-500`}
-            priority={priority}
-            sizes={sizes}
-            onLoad={handleLoad}
-            onError={handleError}
-            loading={priority ? 'eager' : 'lazy'}
-          />
-        </div>
-      ) : (
+    <div 
+      ref={ref as React.RefObject<HTMLDivElement>} 
+      className={`${className} ${!loaded && shouldRender ? 'bg-gray-200 animate-pulse' : ''}`}
+    >
+      {shouldRender && !error ? (
+        <Image
+          src={src}
+          alt={safeAlt}
+          width={fill ? undefined : (width || 400)}
+          height={fill ? undefined : (height || 300)}
+          fill={fill}
+          className={`${className} ${loaded ? 'opacity-100' : 'opacity-0'} transition-opacity duration-500`}
+          priority={priority}
+          sizes={sizes}
+          onLoad={handleLoad}
+          onError={handleError}
+          loading={priority ? 'eager' : 'lazy'}
+        />
+      ) : error ? (
         <div className={`${className} flex items-center justify-center bg-gray-200 text-gray-600 font-medium`}>
           Imagen no disponible
         </div>
-      )}
-    </>
+      ) : null}
+    </div>
   );
 };
 

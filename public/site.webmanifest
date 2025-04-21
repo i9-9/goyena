@@ -1,0 +1,25 @@
+{
+  "name": "Goyena - Casas Urbanas y Departamentos en Caballito",
+  "short_name": "Goyena",
+  "icons": [
+    {
+      "src": "/icons/android-chrome-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/icons/android-chrome-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ],
+  "theme_color": "#2C3424",
+  "background_color": "#FFFFFF",
+  "display": "standalone",
+  "start_url": "/",
+  "description": "Proyecto residencial moderno con casas urbanas y departamentos con amplios espacios verdes en Caballito.",
+  "lang": "es-AR",
+  "dir": "ltr",
+  "orientation": "portrait-primary",
+  "categories": ["real estate", "property", "residence"]
+} 
