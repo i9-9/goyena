@@ -1,36 +1,90 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Goyena Website
+
+This is the repository for the Goyena residential project website built with Next.js and Contentful.
+
+## Features
+
+- Modern, responsive design
+- Fast performance with Next.js
+- Content management through Contentful CMS
+- Interactive components built with Framer Motion
+- Optimized for SEO with JSON-LD structured data
 
 ## Getting Started
 
-First, run the development server:
+### Prerequisites
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+- Node.js 16.x or higher
+- npm or yarn
+- A Contentful account (for content management)
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### Setup
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/your-username/goyena.git
+   cd goyena
+   ```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+2. Install dependencies:
+   ```bash
+   npm install
+   ```
 
-## Learn More
+3. Set up your environment variables by creating a `.env.local` file:
+   ```
+   NEXT_PUBLIC_CONTENTFUL_SPACE_ID=tjs1emf07vzj
+   NEXT_PUBLIC_CONTENTFUL_ACCESS_TOKEN=GNTLd96GKnvz69kzesaxtHCMMziX7pN1K4sgVe3bvNc
+   CONTENTFUL_PREVIEW_TOKEN=24sXCvxRZwR7YDsLzP2kraZ-8NInFCo8XQz2v8HOgiQ
+   ```
 
-To learn more about Next.js, take a look at the following resources:
+4. Run the development server:
+   ```bash
+   npm run dev
+   ```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+The application will be available at http://localhost:3000.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Contentful Integration
 
-## Deploy on Vercel
+This website uses Contentful as its headless CMS to manage content. The main content types are:
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+1. **Hero Image**: The main image at the top of the homepage
+2. **Project Image**: The image in the "Conoce el proyecto" section
+3. **Carousel Images**: Images displayed in the carousel slideshow
+4. **Construction Progress Video**: The video shown in the "Mira los avances de obra" section
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+### Setting Up Contentful
+
+If you need to set up the content models in a new Contentful space, use the setup script included in the `contentful-setup` directory:
+
+1. Navigate to the setup directory:
+   ```bash
+   cd contentful-setup
+   ```
+
+2. Follow the instructions in the [contentful-setup README](./contentful-setup/README.md) to configure and run the setup script.
+
+## Development
+
+### Project Structure
+
+- `app/` - Next.js app directory containing all pages and components
+- `app/components/` - React components
+- `app/lib/` - Utility functions and services
+- `contentful-setup/` - Scripts for setting up Contentful content models
+
+### Key Files
+
+- `app/page.tsx` - Main homepage
+- `app/ContentfulProvider.tsx` - Provider component for Contentful data
+- `app/lib/contentful.js` - Contentful client and data fetching functions
+- `contentful-setup/contentful-setup.cjs` - Contentful setup script
+
+## Deployment
+
+This project can be deployed using [Vercel](https://vercel.com) by connecting your GitHub repository and configuring the same environment variables as in your `.env.local` file.
+
+## License
+
+This project is licensed under the MIT License.

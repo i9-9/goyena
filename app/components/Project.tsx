@@ -3,6 +3,7 @@
 import { motion } from 'framer-motion';
 import Image from 'next/image';
 import { useState, useEffect, useRef } from 'react';
+import { useContentful } from '../ContentfulProvider';
 
 interface CountUpProps {
   end: number;
@@ -198,6 +199,18 @@ const StatLabel = ({ children, delay = 0 }: { children: React.ReactNode, delay?:
 };
 
 const Project = () => {
+  const { projectImage } = useContentful();
+
+  // Get project image URL from Contentful or fallback to static assets
+  const getProjectImageUrl = () => {
+    if (projectImage && projectImage.image && projectImage.image.fields && projectImage.image.fields.file) {
+      return `https:${projectImage.image.fields.file.url}`;
+    }
+    
+    // Fallback to static assets
+    return "/images/project/4.png";
+  };
+
   return (
     <section id="proyecto" className="relative w-full py-16 md:py-24">
       <div className="max-w-[1200px] mx-auto px-6 md:px-8">
@@ -278,39 +291,16 @@ const Project = () => {
             </div>
           </div>
           
-          {/* Columna de imagen - Versión desktop */}
-          <motion.div
-            className="hidden md:block w-full h-[550px] md:h-[600px] relative rounded-none overflow-hidden"
-            initial={{ opacity: 0, scale: 0.95 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.7, delay: 0.4 }}
-            viewport={{ once: true, margin: "-100px" }}
-          >
+          {/* Columna de imagen - en móvil abajo, en desktop a la derecha */}
+          <div className="relative overflow-hidden rounded-xl w-full h-[350px] md:h-[500px]">
             <Image
-              src="/images/proyecto/edificio.jpg"
-              alt="Imagen del Proyecto"
+              src={getProjectImageUrl()}
+              alt="Proyecto Goyena"
               fill
-              className="object-cover object-center"
-              priority
+              className="object-cover object-center transition-all duration-700"
+              sizes="(max-width: 768px) 100vw, 50vw"
             />
-          </motion.div>
-          
-          {/* Columna de imagen - Versión móvil */}
-          <motion.div
-            className="md:hidden w-full h-[350px] relative rounded-none overflow-hidden"
-            initial={{ opacity: 0, scale: 0.95 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.7, delay: 0.4 }}
-            viewport={{ once: true, margin: "-100px" }}
-          >
-            <Image
-              src="/images/proyecto/edificio_mobile.jpg"
-              alt="Imagen del Proyecto"
-              fill
-              className="object-cover object-center"
-              priority
-            />
-          </motion.div>
+          </div>
         </motion.div>
         
         {/* Líneas separadoras para las estadísticas - Solo visibles en móvil */}

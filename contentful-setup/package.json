@@ -1,0 +1,14 @@
+{
+  "name": "contentful-setup",
+  "version": "1.0.0",
+  "description": "Setup script for Goyena Contentful space",
+  "main": "contentful-setup.cjs",
+  "type": "commonjs",
+  "scripts": {
+    "setup": "node contentful-setup.cjs"
+  },
+  "dependencies": {
+    "contentful-management": "^10.46.0",
+    "dotenv": "^16.3.1"
+  }
+} 

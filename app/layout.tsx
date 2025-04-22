@@ -1,9 +1,10 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
   title: "Goyena | Casas Urbanas y Departamentos en Caballito",
   description: "Goyena es un proyecto residencial moderno que promueve la vida comunitaria y el contacto con la naturaleza en el corazón de Caballito. Descubra casas urbanas de 2, 3, 4 y 5 ambientes con amplios espacios verdes.",
+  metadataBase: new URL("https://www.goyena.com.ar"),
   keywords: ["casas urbanas", "departamentos", "Caballito", "Buenos Aires", "naturaleza", "espacios verdes", "proyecto inmobiliario", "lujo", "comfort", "arquitectura moderna"],
   authors: [
     { name: "Grupo Portland", url: "https://www.grupoportland.com.ar" },
@@ -62,7 +63,13 @@ export const metadata: Metadata = {
     canonical: "https://www.goyena.com.ar",
   },
   applicationName: 'Goyena',
+};
+
+export const viewport: Viewport = {
   themeColor: '#2C3424',
+  width: 'device-width',
+  initialScale: 1,
+  maximumScale: 5,
 };
 
 export default function RootLayout({

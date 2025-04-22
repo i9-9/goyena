@@ -2,11 +2,13 @@
 
 import { motion } from 'framer-motion';
 import { useState, useEffect, useRef } from 'react';
+import { useContentful } from '../ContentfulProvider';
 
 const ConstructionProgress = () => {
   const [isMobile, setIsMobile] = useState(false);
   const [isPlaying, setIsPlaying] = useState(false);
   const videoRef = useRef<HTMLVideoElement>(null);
+  const { constructionVideo } = useContentful();
 
   // Detect if we're on mobile
   useEffect(() => {
@@ -68,6 +70,16 @@ const ConstructionProgress = () => {
     };
   }, []);
 
+  // Get video URL from Contentful or fallback to static assets
+  const getVideoUrl = () => {
+    if (constructionVideo && constructionVideo.video && constructionVideo.video.fields && constructionVideo.video.fields.file) {
+      return `https:${constructionVideo.video.fields.file.url}`;
+    }
+    
+    // Fallback to static assets
+    return "/video/mobile_vid.mp4";
+  };
+
   return (
     <section className="relative w-full bg-[#C4C1AF] py-16 pb-24 md:py-20 overflow-hidden">
       <div className="container mx-auto px-4 md:px-8 max-w-[1200px]">
@@ -98,7 +110,7 @@ const ConstructionProgress = () => {
             <video 
               ref={videoRef}
               className="absolute w-full h-full object-cover"
-              src="/video/mobile_vid.mp4"
+              src={getVideoUrl()}
               playsInline
               preload="auto"
               muted

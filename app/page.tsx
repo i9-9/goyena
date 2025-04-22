@@ -10,10 +10,10 @@ import ConstructionProgress from './components/ConstructionProgress';
 import ContactForm from './components/ContactForm';
 import Footer from './components/Footer';
 import FloatingButtons from './components/FloatingButtons';
-import Breadcrumbs from './components/shared/Breadcrumbs';
 import JsonLd from './components/shared/JsonLd';
 import { motion } from 'framer-motion';
 import useMediaQuery from './hooks/useMediaQuery';
+import ContentfulProvider from './ContentfulProvider';
 
 // Datos estructurados para SEO
 const structuredData = {
@@ -112,7 +112,7 @@ export default function Home() {
   const isMobile = useMediaQuery('(max-width: 767px)');
 
   return (
-    <>
+    <ContentfulProvider>
       <JsonLd data={structuredData} id="schema-structured-data" />
       <motion.main 
         className="relative w-full min-h-screen"
@@ -122,11 +122,6 @@ export default function Home() {
       >
         <Hero />
         {!isMobile && <Navbar />}
-        {!isMobile && (
-          <div className="container mx-auto px-4 mt-2 mb-4">
-            <Breadcrumbs />
-          </div>
-        )}
         <ProjectLocation />
         <Lista />
         <Carousel />
@@ -136,6 +131,6 @@ export default function Home() {
         {isMobile && <MobileMenu />}
         <FloatingButtons />
       </motion.main>
-    </>
+    </ContentfulProvider>
   );
 }

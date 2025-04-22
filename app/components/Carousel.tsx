@@ -3,14 +3,16 @@
 import { useState, useEffect } from 'react';
 import Image from 'next/image';
 import { motion, AnimatePresence } from 'framer-motion';
+import { useContentful } from '../ContentfulProvider';
 
 const Carousel = () => {
   const [activeIndex, setActiveIndex] = useState(0);
   const [isMobile, setIsMobile] = useState(false);
   const [direction, setDirection] = useState(1); // 1 for forward, -1 for backward
+  const { carouselImages } = useContentful();
   
-  // Desktop images (landscape)
-  const desktopImages = [
+  // Desktop images (fallback)
+  const fallbackDesktopImages = [
     '/images/carousel/1.png',
     '/images/carousel/2.png',
     '/images/carousel/3.png',
@@ -23,8 +25,8 @@ const Carousel = () => {
     '/images/carousel/11.jpg',
   ];
   
-  // Mobile images (portrait)
-  const mobileImages = [
+  // Mobile images (fallback)
+  const fallbackMobileImages = [
     '/images/carousel/mobile/1_mobile.png',
     '/images/carousel/mobile/2_mobile.png',
     '/images/carousel/mobile/3_mobile.png',
@@ -37,8 +39,24 @@ const Carousel = () => {
     '/images/carousel/11.jpg',
   ];
   
-  // Determine which images to use based on screen size
-  const images = isMobile ? mobileImages : desktopImages;
+  // Get images from Contentful or use fallbacks
+  const getImages = () => {
+    if (carouselImages && carouselImages.length > 0) {
+      // Map Contentful images to URLs
+      return carouselImages.map(image => {
+        if (image && image.image && image.image.fields && image.image.fields.file) {
+          return `https:${image.image.fields.file.url}`;
+        }
+        return '';
+      }).filter(url => url !== ''); // Filter out any empty URLs
+    }
+    
+    // Fallback to static assets
+    return isMobile ? fallbackMobileImages : fallbackDesktopImages;
+  };
+  
+  // Get current images
+  const images = getImages();
 
   // Check if mobile on component mount and window resize
   useEffect(() => {

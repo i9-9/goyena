@@ -3,6 +3,7 @@
 import Image from 'next/image';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useEffect, useState, useRef } from 'react';
+import { useContentful } from '../ContentfulProvider';
 
 // Spotlight Effect Component with fixed overflow
 const SpotlightText = ({ 
@@ -157,6 +158,7 @@ const SplashScreen = ({ finishLoading }: { finishLoading: () => void }) => {
 const Hero = () => {
   const [isMobile, setIsMobile] = useState(false);
   const [loading, setLoading] = useState(true);
+  const { heroImage } = useContentful();
 
   // Detect mobile device
   useEffect(() => {
@@ -172,6 +174,16 @@ const Hero = () => {
     };
   }, []);
 
+  // Get hero image URL from Contentful or fallback to static assets
+  const getHeroImageUrl = () => {
+    if (heroImage && heroImage.image && heroImage.image.fields && heroImage.image.fields.file) {
+      return `https:${heroImage.image.fields.file.url}`;
+    }
+    
+    // Fallback to static assets
+    return isMobile ? "/images/hero/mobile_hero.jpg" : "/images/hero/desktop.jpg";
+  };
+
   return (
     <>
       <AnimatePresence>
@@ -181,7 +193,7 @@ const Hero = () => {
       <section id="hero" className={`relative w-full ${isMobile ? 'h-screen' : 'h-[calc(100vh-6.25rem)]'} flex items-center justify-center bg-[#D7DBD6] overflow-hidden`}>
         <div className="absolute inset-0 z-0">
           <Image
-            src={isMobile ? "/images/hero/mobile_hero.jpg" : "/images/hero/desktop.jpg"}
+            src={getHeroImageUrl()}
             alt="Hero background"
             fill
             priority
