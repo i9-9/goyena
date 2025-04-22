@@ -3,13 +3,71 @@
 import { createContext, useContext, useEffect, useState, ReactNode } from 'react';
 import { getHeroImage, getProjectImage, getCarouselImages, getConstructionVideo } from './lib/contentful';
 
-// Define the context type with simpler any types for now
-// We can refine these types later if needed
+// Define interfaces for Contentful content types
+interface Asset {
+  fields: {
+    file: {
+      url: string;
+      details?: {
+        size?: number;
+        image?: {
+          width: number;
+          height: number;
+        };
+      };
+      fileName: string;
+      contentType: string;
+    };
+    title?: string;
+    description?: string;
+  };
+}
+
+interface HeroImage {
+  title: string;
+  description?: string;
+  image: {
+    fields: Asset['fields'];
+  };
+  mobileImage?: {
+    fields: Asset['fields'];
+  };
+}
+
+interface ProjectImage {
+  title: string;
+  description?: string;
+  image: {
+    fields: Asset['fields'];
+  };
+}
+
+interface CarouselImage {
+  title: string;
+  description?: string;
+  image: {
+    fields: Asset['fields'];
+  };
+  order: number;
+}
+
+interface ConstructionVideo {
+  title: string;
+  description?: string;
+  video: {
+    fields: Asset['fields'];
+  };
+  thumbnail?: {
+    fields: Asset['fields'];
+  };
+}
+
+// Define the context type with proper interfaces
 interface ContentfulContextType {
-  heroImage: any;
-  projectImage: any;
-  carouselImages: any[];
-  constructionVideo: any;
+  heroImage: HeroImage | null;
+  projectImage: ProjectImage | null;
+  carouselImages: CarouselImage[];
+  constructionVideo: ConstructionVideo | null;
   loading: boolean;
   error: string | null;
 }
