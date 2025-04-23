@@ -125,7 +125,7 @@ const Lista = () => {
       
       {/* Top section with list */}
       <motion.div 
-        className="absolute top-0 inset-x-0 h-1/2 z-10 flex flex-col justify-center pl-[10%] md:pl-[15%]"
+        className="absolute top-0 inset-x-0 h-[45%] z-10 flex flex-col justify-center pl-[10%] md:pl-[15%]"
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6, ease: "easeOut" }}

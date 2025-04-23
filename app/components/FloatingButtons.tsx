@@ -36,7 +36,7 @@ const FloatingButtons = () => {
       <AnimatePresence>
         {showScrollButton && (
           <motion.button
-            className="w-[6rem] h-[2.2rem] flex items-center justify-center"
+            className="w-[4.8rem] md:w-[6rem] h-[1.8rem] md:h-[2.2rem] flex items-center justify-center"
             onClick={scrollToTop}
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -50,14 +50,14 @@ const FloatingButtons = () => {
               alt="Scroll to top"
               width={64}
               height={64}
-              className="w-16 h-16"
+              className="w-[3.2rem] h-[3.2rem] md:w-16 md:h-16"
             />
           </motion.button>
         )}
       </AnimatePresence>
       
       <motion.button
-        className="w-[6rem] h-[6rem] flex items-center justify-center"
+        className="w-[4.8rem] md:w-[6rem] h-[4.8rem] md:h-[6rem] flex items-center justify-center"
         onClick={openWhatsApp}
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
@@ -70,7 +70,7 @@ const FloatingButtons = () => {
           alt="WhatsApp"
           width={64}
           height={64}
-          className="w-16 h-16"
+          className="w-[3.2rem] h-[3.2rem] md:w-16 md:h-16"
         />
       </motion.button>
     </div>

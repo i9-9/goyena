@@ -27,18 +27,6 @@ const ConstructionProgress = () => {
     };
   }, []);
 
-  const handlePlayVideo = () => {
-    if (videoRef.current) {
-      if (videoRef.current.paused) {
-        videoRef.current.play();
-        setIsPlaying(true);
-      } else {
-        videoRef.current.pause();
-        setIsPlaying(false);
-      }
-    }
-  };
-
   // Load the first frame of the video
   useEffect(() => {
     if (videoRef.current) {
@@ -69,6 +57,23 @@ const ConstructionProgress = () => {
       }
     };
   }, []);
+
+  // If constructionVideo is null or isVisible is false, don't render the component
+  if (!constructionVideo || constructionVideo.isVisible === false) {
+    return null;
+  }
+
+  const handlePlayVideo = () => {
+    if (videoRef.current) {
+      if (videoRef.current.paused) {
+        videoRef.current.play();
+        setIsPlaying(true);
+      } else {
+        videoRef.current.pause();
+        setIsPlaying(false);
+      }
+    }
+  };
 
   // Get video URL from Contentful or fallback to static assets
   const getVideoUrl = () => {

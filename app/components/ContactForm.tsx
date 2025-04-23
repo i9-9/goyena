@@ -254,9 +254,11 @@ const ContactForm = () => {
                   className="w-full bg-transparent pb-1 focus:outline-none appearance-none font-goudy-regular text-base pr-8"
                 >
                   <option value="">Seleccionar</option>
-                  <option value="casa">Casa urbana</option>
-                  <option value="departamento">Departamento</option>
-                  <option value="información">Información general</option>
+                  <option value="monoambiente">Monoambiente</option>
+                  <option value="2 ambientes">2 ambientes</option>
+                  <option value="3 ambientes">3 ambientes</option>
+                  <option value="4 ambientes">4 ambientes</option>
+                  
                 </select>
                 <motion.div 
                   className="absolute right-2 bottom-3 pointer-events-none"

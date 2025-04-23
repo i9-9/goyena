@@ -60,6 +60,7 @@ interface ConstructionVideo {
   thumbnail?: {
     fields: Asset['fields'];
   };
+  isVisible?: boolean;
 }
 
 // Define the context type with proper interfaces
