@@ -3,6 +3,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { motion } from 'framer-motion';
+import { useCallback } from 'react';
 
 const Footer = () => {
   // Animation variants
@@ -29,6 +30,16 @@ const Footer = () => {
     animate: { opacity: 1, x: 0, transition: { duration: 0.5 } },
     hover: { x: 3, transition: { duration: 0.2 } }
   };
+
+  const handleWhatsAppClick = useCallback(() => {
+    // Format for WhatsApp API: country code (54) + area code (11) + number without spaces
+    const phoneNumber = '5491124955734';
+    const message = 'Hola, me interesa obtener más información sobre el proyecto Goyena.';
+    // Create the WhatsApp URL with encodeURIComponent for the message
+    const whatsappUrl = `https://api.whatsapp.com/send?phone=${phoneNumber}&text=${encodeURIComponent(message)}`;
+    // Open in a new tab with specific options to ensure it works properly
+    window.open(whatsappUrl, '_blank');
+  }, []);
 
   return (
     <footer className="bg-[#21261B] text-white py-10 md:py-14">
@@ -124,7 +135,7 @@ const Footer = () => {
               variants={staggerChildren}
             >
               <motion.a 
-                href="#" 
+                href="https://www.tiktok.com/@grupo.portland" 
                 target="_blank" 
                 rel="noopener noreferrer" 
                 aria-label="TikTok"
@@ -140,7 +151,7 @@ const Footer = () => {
                 />
               </motion.a>
               <motion.a 
-                href="#" 
+                href="https://www.facebook.com/GrupoPortlandDevelopers/" 
                 target="_blank" 
                 rel="noopener noreferrer" 
                 aria-label="Facebook"
@@ -156,7 +167,7 @@ const Footer = () => {
                 />
               </motion.a>
               <motion.a 
-                href="#" 
+                href="https://www.instagram.com/grupoportland/" 
                 target="_blank" 
                 rel="noopener noreferrer" 
                 aria-label="Instagram"
@@ -172,7 +183,7 @@ const Footer = () => {
                 />
               </motion.a>
               <motion.a 
-                href="#" 
+                href="https://www.linkedin.com/company/grupo-portland-intl/" 
                 target="_blank" 
                 rel="noopener noreferrer" 
                 aria-label="LinkedIn"
@@ -187,13 +198,14 @@ const Footer = () => {
                   className="h-auto" 
                 />
               </motion.a>
-              <motion.a 
-                href="#" 
-                target="_blank" 
-                rel="noopener noreferrer" 
+              <motion.button 
+                onClick={handleWhatsAppClick}
                 aria-label="WhatsApp"
                 whileHover={{ scale: 1.15 }}
                 transition={{ duration: 0.2 }}
+                className="cursor-pointer"
+                tabIndex={0}
+                onKeyDown={(e) => e.key === 'Enter' && handleWhatsAppClick()}
               >
                 <Image 
                   src="/rrss/whatsapp.svg" 
@@ -202,7 +214,7 @@ const Footer = () => {
                   height={24} 
                   className="h-auto" 
                 />
-              </motion.a>
+              </motion.button>
             </motion.div>
             
             <div className="w-28 h-[1px] bg-[#E5DED3] mb-10"></div>
@@ -327,7 +339,7 @@ const Footer = () => {
                   variants={staggerChildren}
                 >
                   <motion.a 
-                    href="#" 
+                    href="https://www.tiktok.com/@grupo.portland" 
                     target="_blank" 
                     rel="noopener noreferrer" 
                     aria-label="TikTok"
@@ -343,7 +355,7 @@ const Footer = () => {
                     />
                   </motion.a>
                   <motion.a 
-                    href="#" 
+                    href="https://www.facebook.com/GrupoPortlandDevelopers/" 
                     target="_blank" 
                     rel="noopener noreferrer" 
                     aria-label="Facebook"
@@ -359,7 +371,7 @@ const Footer = () => {
                     />
                   </motion.a>
                   <motion.a 
-                    href="#" 
+                    href="https://www.instagram.com/grupoportland/" 
                     target="_blank" 
                     rel="noopener noreferrer" 
                     aria-label="Instagram"
@@ -375,7 +387,7 @@ const Footer = () => {
                     />
                   </motion.a>
                   <motion.a 
-                    href="#" 
+                    href="https://www.linkedin.com/company/grupo-portland-intl/" 
                     target="_blank" 
                     rel="noopener noreferrer" 
                     aria-label="LinkedIn"
@@ -390,13 +402,14 @@ const Footer = () => {
                       className="h-auto opacity-90 hover:opacity-100 transition-opacity"
                     />
                   </motion.a>
-                  <motion.a 
-                    href="#" 
-                    target="_blank" 
-                    rel="noopener noreferrer" 
+                  <motion.button 
+                    onClick={handleWhatsAppClick}
                     aria-label="WhatsApp"
                     whileHover={{ scale: 1.15 }}
                     transition={{ duration: 0.2 }}
+                    className="cursor-pointer"
+                    tabIndex={0}
+                    onKeyDown={(e) => e.key === 'Enter' && handleWhatsAppClick()}
                   >
                     <Image 
                       src="/rrss/whatsapp.svg" 
@@ -405,7 +418,7 @@ const Footer = () => {
                       height={22} 
                       className="h-auto opacity-90 hover:opacity-100 transition-opacity"
                     />
-                  </motion.a>
+                  </motion.button>
                 </motion.div>
               </div>
               <div className="w-[2px] h-28 bg-[#E5DED3] absolute right-0 top-1/2 transform -translate-y-1/2"></div>

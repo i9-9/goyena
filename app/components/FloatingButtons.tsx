@@ -27,8 +27,14 @@ const FloatingButtons = () => {
     });
   };
 
-  const openWhatsApp = () => {
-    window.open('https://wa.me/5491112345678?text=Hola,%20me%20interesa%20obtener%20más%20información%20sobre%20Goyena', '_blank');
+  const handleWhatsAppClick = () => {
+    // Format for WhatsApp API: country code (54) + area code (11) + number without spaces
+    const phoneNumber = '5491124955734';
+    const message = 'Hola, me interesa obtener más información sobre el proyecto Goyena.';
+    // Create the WhatsApp URL with encodeURIComponent for the message
+    const whatsappUrl = `https://api.whatsapp.com/send?phone=${phoneNumber}&text=${encodeURIComponent(message)}`;
+    // Open in a new tab with specific options to ensure it works properly
+    window.open(whatsappUrl, '_blank');
   };
 
   return (
@@ -58,12 +64,14 @@ const FloatingButtons = () => {
       
       <motion.button
         className="w-[4.8rem] md:w-[6rem] h-[4.8rem] md:h-[6rem] flex items-center justify-center"
-        onClick={openWhatsApp}
+        onClick={handleWhatsAppClick}
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         whileHover={{ y: -1.5 }}
         transition={{ duration: 0.4 }}
         aria-label="Contactar por WhatsApp"
+        tabIndex={0}
+        onKeyDown={(e) => e.key === 'Enter' && handleWhatsAppClick()}
       >
         <Image 
           src="/images/buttons/whatsapp.svg"
