@@ -86,6 +86,18 @@ const Carousel = () => {
     return images[normalizedIndex] || '/images/placeholder.jpg';
   };
 
+  // Handle navigation to previous slide
+  const goToPreviousSlide = () => {
+    setDirection(-1);
+    setActiveIndex((current) => (current === 0 ? images.length - 1 : current - 1));
+  };
+
+  // Handle navigation to next slide
+  const goToNextSlide = () => {
+    setDirection(1);
+    setActiveIndex((current) => (current === images.length - 1 ? 0 : current + 1));
+  };
+
   // Auto-advance the carousel every 5 seconds
   useEffect(() => {
     const interval = setInterval(() => {
@@ -155,10 +167,7 @@ const Carousel = () => {
               damping: 30,
               duration: 0.8
             }}
-            onClick={() => {
-              setDirection(-1);
-              setActiveIndex((current) => (current === 0 ? images.length - 1 : current - 1));
-            }}
+            onClick={goToPreviousSlide}
             whileHover={{ scale: 0.92, opacity: 0.9 }}
           >
             <Image
@@ -216,10 +225,7 @@ const Carousel = () => {
               damping: 30,
               duration: 0.8
             }}
-            onClick={() => {
-              setDirection(1);
-              setActiveIndex((current) => (current === images.length - 1 ? 0 : current + 1));
-            }}
+            onClick={goToNextSlide}
             whileHover={{ scale: 0.92, opacity: 0.9 }}
           >
             <Image
@@ -229,6 +235,25 @@ const Carousel = () => {
               className="object-cover"
             />
           </motion.div>
+
+          {/* Mobile-only touch areas - these cover the left/right sides of the screen */}
+          {isMobile && (
+            <>
+              {/* Left touch area for previous slide */}
+              <div 
+                className="absolute left-0 top-0 w-1/3 h-full z-40 cursor-pointer"
+                onClick={goToPreviousSlide}
+                aria-label="Previous image"
+              />
+              
+              {/* Right touch area for next slide */}
+              <div 
+                className="absolute right-0 top-0 w-1/3 h-full z-40 cursor-pointer"
+                onClick={goToNextSlide}
+                aria-label="Next image"
+              />
+            </>
+          )}
         </div>
       </div>
 
