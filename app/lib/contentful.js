@@ -44,6 +44,7 @@ export const getProjectImage = async () => {
     const entries = await safeGetEntries({
       content_type: 'projectImage',
       limit: 1,
+      include: 2  // Include linked assets up to 2 levels deep
     });
 
     return entries.items[0]?.fields || null;

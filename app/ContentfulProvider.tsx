@@ -40,6 +40,12 @@ interface ProjectImage {
   image: {
     fields: Asset['fields'];
   };
+  floorPlanPdf?: {
+    fields: Asset['fields'];
+  };
+  brochurePdf?: {
+    fields: Asset['fields'];
+  };
 }
 
 interface CarouselImage {

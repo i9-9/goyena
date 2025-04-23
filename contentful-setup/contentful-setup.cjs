@@ -209,6 +209,30 @@ async function createProjectImageContentType(environment) {
               linkMimetypeGroup: ['image']
             }
           ]
+        },
+        {
+          id: 'floorPlanPdf',
+          name: 'Floor Plan PDF',
+          type: 'Link',
+          linkType: 'Asset',
+          required: false,
+          validations: [
+            {
+              linkMimetypeGroup: ['pdfdocument']
+            }
+          ]
+        },
+        {
+          id: 'brochurePdf',
+          name: 'Brochure PDF',
+          type: 'Link',
+          linkType: 'Asset',
+          required: false,
+          validations: [
+            {
+              linkMimetypeGroup: ['pdfdocument']
+            }
+          ]
         }
       ]
     });
@@ -484,29 +508,92 @@ async function createInitialEntries(environment) {
           'image/jpeg'
         );
         
-        // Create project image entry
-        const projectEntry = await environment.createEntry('projectImage', {
-          fields: {
-            title: {
-              'en-US': 'Project Image'
-            },
-            description: {
-              'en-US': 'Image displayed in the "Conoce el proyecto" section'
-            },
-            image: {
-              'en-US': {
-                sys: {
-                  type: 'Link',
-                  linkType: 'Asset',
-                  id: projectAsset.sys.id
-                }
+        // Check for floor plan PDF
+        let floorPlanAsset = null;
+        const floorPlanPath = path.join(assetsDir, 'floor-plans.pdf');
+        if (fs.existsSync(floorPlanPath)) {
+          floorPlanAsset = await uploadAsset(
+            environment,
+            floorPlanPath,
+            'Floor Plans',
+            'Floor plans for the project units',
+            'application/pdf'
+          );
+        }
+        
+        // Check for brochure PDF
+        let brochureAsset = null;
+        const brochurePath = path.join(assetsDir, 'brochure.pdf');
+        if (fs.existsSync(brochurePath)) {
+          brochureAsset = await uploadAsset(
+            environment,
+            brochurePath,
+            'Project Brochure',
+            'Detailed brochure with project information',
+            'application/pdf'
+          );
+        }
+        
+        // Prepare entry fields
+        const entryFields = {
+          title: {
+            'en-US': 'Project Image'
+          },
+          description: {
+            'en-US': 'Image displayed in the "Conoce el proyecto" section'
+          },
+          image: {
+            'en-US': {
+              sys: {
+                type: 'Link',
+                linkType: 'Asset',
+                id: projectAsset.sys.id
               }
             }
           }
+        };
+        
+        // Add floor plan if available
+        if (floorPlanAsset) {
+          entryFields.floorPlanPdf = {
+            'en-US': {
+              sys: {
+                type: 'Link',
+                linkType: 'Asset',
+                id: floorPlanAsset.sys.id
+              }
+            }
+          };
+        }
+        
+        // Add brochure if available
+        if (brochureAsset) {
+          entryFields.brochurePdf = {
+            'en-US': {
+              sys: {
+                type: 'Link',
+                linkType: 'Asset',
+                id: brochureAsset.sys.id
+              }
+            }
+          };
+        }
+        
+        // Create project image entry
+        const projectEntry = await environment.createEntry('projectImage', {
+          fields: entryFields
         });
         
         await projectEntry.publish();
         console.log('Project Image entry created and published successfully');
+        
+        if (floorPlanAsset) {
+          console.log('Floor Plan PDF linked to Project Image entry');
+        }
+        
+        if (brochureAsset) {
+          console.log('Brochure PDF linked to Project Image entry');
+        }
       } else {
         console.log('Project image not found. Skipping project image entry creation.');
       }

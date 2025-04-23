@@ -47,39 +47,31 @@ This will:
 
 ## Sample Assets (Optional)
 
-For the script to create sample entries with assets, you need to add sample files to the `sample-assets` directory:
+You can add sample assets to the `sample-assets` directory for the script to create sample entries. These are the files the script will look for:
 
-```
-sample-assets/
-├── hero.jpg
-├── project.jpg
-├── construction.mp4
-├── construction-thumbnail.jpg
-└── carousel/
-    ├── image1.jpg
-    ├── image2.jpg
-    └── image3.jpg
-```
+- `hero.jpg` - Hero image for the homepage
+- `project.jpg` - Image for the "Conoce el proyecto" section
+- `floor-plans.pdf` - PDF containing floor plans for the project units
+- `brochure.pdf` - PDF brochure with detailed project information
+- `carousel/` (directory) - Images for the carousel (any images in this directory will be added to the carousel)
+- `construction.mp4` - Video for construction progress section
+- `construction-thumbnail.jpg` - Thumbnail for the construction video (optional)
 
 ## Content Models
 
 The script sets up the following content models:
 
 1. **Hero Image**
-   - Main image displayed at the top of the homepage
-   - Fields: title, description, image, mobileImage (optional)
+   - Fields: `title`, `description`, `image`, `mobileImage` (optional)
 
 2. **Project Image**
-   - Image displayed in the "Conoce el proyecto" section
-   - Fields: title, description, image
+   - Fields: `title`, `description`, `image`, `floorPlanPdf` (optional), `brochurePdf` (optional)
 
 3. **Carousel Images**
-   - Images for the carousel slideshow
-   - Fields: title, description, image, order
+   - Fields: `title`, `description`, `image`, `order`
 
 4. **Construction Progress Video**
-   - Video shown in the "Mira los avances de obra" section
-   - Fields: title, description, video, thumbnail (optional)
+   - Fields: `title`, `description`, `video`, `thumbnail` (optional), `isVisible` (boolean)
 
 ## Troubleshooting
 

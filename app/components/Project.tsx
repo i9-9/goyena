@@ -237,6 +237,52 @@ const Project = () => {
     return "/images/project/4.png";
   };
 
+  // Function to handle floor plans PDF download
+  const handleFloorPlansDownload = () => {
+    if (
+      projectImage?.floorPlanPdf?.fields?.file?.url
+    ) {
+      const pdfUrl = `https:${projectImage.floorPlanPdf.fields.file.url}`;
+      const fileName = projectImage.floorPlanPdf.fields.file.fileName || 'plantas-goyena.pdf';
+      
+      // Create temporary anchor element and trigger download
+      const link = document.createElement('a');
+      link.href = pdfUrl;
+      link.setAttribute('download', fileName);
+      link.setAttribute('target', '_blank');
+      link.style.display = 'none';
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+    } else {
+      console.warn('Floor plan PDF not available in Contentful');
+      // Could show a message to the user here
+    }
+  };
+
+  // Function to handle brochure PDF download
+  const handleBrochureDownload = () => {
+    if (
+      projectImage?.brochurePdf?.fields?.file?.url
+    ) {
+      const pdfUrl = `https:${projectImage.brochurePdf.fields.file.url}`;
+      const fileName = projectImage.brochurePdf.fields.file.fileName || 'brochure-goyena.pdf';
+      
+      // Create temporary anchor element and trigger download
+      const link = document.createElement('a');
+      link.href = pdfUrl;
+      link.setAttribute('download', fileName);
+      link.setAttribute('target', '_blank');
+      link.style.display = 'none';
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+    } else {
+      console.warn('Brochure PDF not available in Contentful');
+      // Could show a message to the user here
+    }
+  };
+
   // Parallax effect for the image
   const { scrollYProgress } = useScroll({
     target: containerRef,
@@ -292,11 +338,9 @@ const Project = () => {
               <BlurredText
                 text={
                   <>
-                    Goyena busca maximizar el uso del espacio en el centro de la
-                    manzana, creando un entorno residencial moderno que
-                    <br />
-                    promueva la vida comunitaria y el contacto con la
-                    naturaleza.
+                    Goyena busca maximizar el uso del espacio en el centro de la manzana, 
+                    creando un entorno residencial moderno que promueva la vida comunitaria 
+                    y el contacto con la naturaleza.
                   </>
                 }
                 className="font-arizona"
@@ -314,6 +358,8 @@ const Project = () => {
                 viewport={{ once: true, margin: "-100px" }}
                 whileHover={{ scale: 1.03 }}
                 whileTap={{ scale: 0.98 }}
+                onClick={handleFloorPlansDownload}
+                aria-label="Descargar Plantas en PDF"
               >
                 Descargar Plantas
               </motion.button>
@@ -326,6 +372,8 @@ const Project = () => {
                 viewport={{ once: true, margin: "-100px" }}
                 whileHover={{ scale: 1.03 }}
                 whileTap={{ scale: 0.98 }}
+                onClick={handleBrochureDownload}
+                aria-label="Descargar Brochure en PDF"
               >
                 Descargar Brochure
               </motion.button>

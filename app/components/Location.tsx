@@ -48,7 +48,7 @@ const Location = () => {
               
               {/* Información a la derecha */}
               <div className="w-[35%] h-full bg-[#2C3424] text-white px-12 py-10 flex flex-col text-left justify-center pl-20">
-                <h3 className="text-base font-seasons-bold uppercase mb-6">Gastronomía</h3>
+                <h3 className="text-base font-seasons-bold uppercase mb-6">Polo Gastronómico</h3>
                 <ul className="text-[1.125rem] leading-tight space-y-2 mb-12">
                   <li className="font-arizona-light">Cucina Paradiso</li>
                   <li className="font-arizona-light">Goyena Grill</li>
@@ -88,7 +88,7 @@ const Location = () => {
               <div className="w-full bg-[#2C3424] text-white px-6 py-4">
                 <div className="grid grid-cols-2 gap-x-4">
                   <div>
-                    <h3 className="text-base font-seasons-bold uppercase mb-3">Gastronomía</h3>
+                    <h3 className="text-base font-seasons-bold uppercase mb-3">Polo Gastronómico</h3>
                     <ul className="text-sm leading-tight space-y-1">
                       <li className="font-arizona-light">Cucina Paradiso</li>
                       <li className="font-arizona-light">Goyena Grill</li>

@@ -117,7 +117,7 @@ const ContactForm = () => {
   return (
     <section id="contacto" className="relative w-full h-screen overflow-hidden">
       {/* Background Image */}
-      <div className="absolute inset-0 z-0">
+      <div className="absolute inset-0 z-0 transform rotate-180">
         <Image
           src="/images/contact/bg_contact.jpg"
           alt="Background"
