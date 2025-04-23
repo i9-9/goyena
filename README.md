@@ -33,9 +33,9 @@ This is the repository for the Goyena residential project website built with Nex
 
 3. Set up your environment variables by creating a `.env.local` file:
    ```
-   NEXT_PUBLIC_CONTENTFUL_SPACE_ID=tjs1emf07vzj
-   NEXT_PUBLIC_CONTENTFUL_ACCESS_TOKEN=GNTLd96GKnvz69kzesaxtHCMMziX7pN1K4sgVe3bvNc
-   CONTENTFUL_PREVIEW_TOKEN=24sXCvxRZwR7YDsLzP2kraZ-8NInFCo8XQz2v8HOgiQ
+   NEXT_PUBLIC_CONTENTFUL_SPACE_ID=your-space-id
+   NEXT_PUBLIC_CONTENTFUL_ACCESS_TOKEN=your-access-token
+   CONTENTFUL_PREVIEW_TOKEN=your-preview-token
    
    # Google Sheets (see docs/GOOGLE_SHEETS_SETUP.md for instructions)
    GOOGLE_SERVICE_ACCOUNT_EMAIL=your-service-account-email@project-id.iam.gserviceaccount.com
