@@ -519,7 +519,7 @@ const Project = () => {
                 }}
                 viewport={{ once: true }}
               >
-                2,3,4 &5
+                1,2,3 &4
               </motion.div>
               <StatLabel delay={0.9}>Ambientes</StatLabel>
             </div>
@@ -618,7 +618,7 @@ const Project = () => {
                 transition={{ duration: 0.5, delay: 0.5 }}
                 viewport={{ once: true }}
               >
-                2,3,4 &5
+                1,2,3 &4
               </motion.div>
               <StatLabel delay={0.7}>Ambientes</StatLabel>
             </div>

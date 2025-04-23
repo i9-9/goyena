@@ -76,7 +76,7 @@ const structuredData = {
         {
           "@type": "LocationFeatureSpecification",
           "name": "Ambientes",
-          "value": "2, 3, 4 y 5 ambientes"
+          "value": "1, 2, 3 y 4 ambientes"
         },
         {
           "@type": "LocationFeatureSpecification",

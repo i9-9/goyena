@@ -18,7 +18,19 @@ export async function POST(request: Request) {
     // Google Sheets Authentication
     // These credentials should be stored in environment variables
     const serviceAccountEmail = process.env.GOOGLE_SERVICE_ACCOUNT_EMAIL;
-    const privateKey = process.env.GOOGLE_PRIVATE_KEY?.replace(/\\n/g, '\n');
+    
+    // Handle private key correctly - important for Vercel deployment
+    let privateKey = process.env.GOOGLE_PRIVATE_KEY;
+    if (privateKey) {
+      // Replace literal \n with actual newlines if needed
+      privateKey = privateKey.replace(/\\n/g, '\n');
+      
+      // If key is wrapped in quotes (as it is in Vercel), remove them
+      if (privateKey.startsWith('"') && privateKey.endsWith('"')) {
+        privateKey = privateKey.slice(1, -1);
+      }
+    }
+    
     const spreadsheetId = process.env.GOOGLE_SPREADSHEET_ID;
     
     if (!serviceAccountEmail || !privateKey || !spreadsheetId) {
