@@ -221,6 +221,8 @@ const StatLabel = ({
 const Project = () => {
   const { projectImage } = useContentful();
   const containerRef = useRef<HTMLDivElement>(null);
+  const [isFloorPlanLoading, setIsFloorPlanLoading] = useState(false);
+  const [isBrochureLoading, setIsBrochureLoading] = useState(false);
 
   // Get project image URL from Contentful or fallback to static assets
   const getProjectImageUrl = () => {
@@ -238,48 +240,72 @@ const Project = () => {
   };
 
   // Function to handle floor plans PDF download
-  const handleFloorPlansDownload = () => {
+  const handleFloorPlansDownload = async () => {
     if (
       projectImage?.floorPlanPdf?.fields?.file?.url
     ) {
-      const pdfUrl = `https:${projectImage.floorPlanPdf.fields.file.url}`;
-      const fileName = projectImage.floorPlanPdf.fields.file.fileName || 'plantas-goyena.pdf';
-      
-      // Create temporary anchor element and trigger download
-      const link = document.createElement('a');
-      link.href = pdfUrl;
-      link.setAttribute('download', fileName);
-      link.setAttribute('target', '_blank');
-      link.style.display = 'none';
-      document.body.appendChild(link);
-      link.click();
-      document.body.removeChild(link);
+      setIsFloorPlanLoading(true);
+      try {
+        const pdfUrl = `https:${projectImage.floorPlanPdf.fields.file.url}`;
+        const fileName = projectImage.floorPlanPdf.fields.file.fileName || 'plantas-goyena.pdf';
+        
+        // Fetch the PDF file
+        const response = await fetch(pdfUrl);
+        const blob = await response.blob();
+        
+        // Create a blob URL and trigger download
+        const blobUrl = URL.createObjectURL(blob);
+        const link = document.createElement('a');
+        link.href = blobUrl;
+        link.download = fileName;
+        document.body.appendChild(link);
+        link.click();
+        
+        // Clean up
+        document.body.removeChild(link);
+        setTimeout(() => URL.revokeObjectURL(blobUrl), 100);
+      } catch (error) {
+        console.error('Error downloading floor plan PDF:', error);
+      } finally {
+        setTimeout(() => setIsFloorPlanLoading(false), 800);
+      }
     } else {
       console.warn('Floor plan PDF not available in Contentful');
-      // Could show a message to the user here
     }
   };
 
   // Function to handle brochure PDF download
-  const handleBrochureDownload = () => {
+  const handleBrochureDownload = async () => {
     if (
       projectImage?.brochurePdf?.fields?.file?.url
     ) {
-      const pdfUrl = `https:${projectImage.brochurePdf.fields.file.url}`;
-      const fileName = projectImage.brochurePdf.fields.file.fileName || 'brochure-goyena.pdf';
-      
-      // Create temporary anchor element and trigger download
-      const link = document.createElement('a');
-      link.href = pdfUrl;
-      link.setAttribute('download', fileName);
-      link.setAttribute('target', '_blank');
-      link.style.display = 'none';
-      document.body.appendChild(link);
-      link.click();
-      document.body.removeChild(link);
+      setIsBrochureLoading(true);
+      try {
+        const pdfUrl = `https:${projectImage.brochurePdf.fields.file.url}`;
+        const fileName = projectImage.brochurePdf.fields.file.fileName || 'brochure-goyena.pdf';
+        
+        // Fetch the PDF file
+        const response = await fetch(pdfUrl);
+        const blob = await response.blob();
+        
+        // Create a blob URL and trigger download
+        const blobUrl = URL.createObjectURL(blob);
+        const link = document.createElement('a');
+        link.href = blobUrl;
+        link.download = fileName;
+        document.body.appendChild(link);
+        link.click();
+        
+        // Clean up
+        document.body.removeChild(link);
+        setTimeout(() => URL.revokeObjectURL(blobUrl), 100);
+      } catch (error) {
+        console.error('Error downloading brochure PDF:', error);
+      } finally {
+        setTimeout(() => setIsBrochureLoading(false), 800);
+      }
     } else {
       console.warn('Brochure PDF not available in Contentful');
-      // Could show a message to the user here
     }
   };
 
@@ -350,32 +376,54 @@ const Project = () => {
 
             <div className="flex flex-row justify-center md:justify-start gap-4 md:gap-3 mb-10 md:mb-0 md:mt-auto md:flex-col w-full">
               <motion.button
-                className="bg-[#959581] border border-[#2C3424]/20 text-white font-seasons-light text-[0.875rem] md:text-[1rem] uppercase tracking-[0.1em] py-[0.3rem] md:py-[0.375rem] px-[1.25rem] md:px-[1.5rem] rounded-full transition-all hover:bg-[#2C3424] w-fit"
+                className="bg-[#959581] border border-[#2C3424]/20 text-white font-seasons-light text-[0.875rem] md:text-[1rem] uppercase tracking-[0.1em] py-[0.3rem] md:py-[0.375rem] px-[1.25rem] md:px-[1.5rem] rounded-full transition-all hover:bg-[#2C3424] w-fit relative disabled:opacity-70"
                 custom={1.0}
                 variants={textFadeIn}
                 initial="hidden"
                 whileInView="visible"
                 viewport={{ once: true, margin: "-100px" }}
-                whileHover={{ scale: 1.03 }}
-                whileTap={{ scale: 0.98 }}
+                whileHover={{ scale: isFloorPlanLoading ? 1 : 1.03 }}
+                whileTap={{ scale: isFloorPlanLoading ? 1 : 0.98 }}
                 onClick={handleFloorPlansDownload}
                 aria-label="Descargar Plantas en PDF"
+                disabled={isFloorPlanLoading}
               >
-                Descargar Plantas
+                {isFloorPlanLoading ? (
+                  <span className="flex items-center justify-center">
+                    <svg className="animate-spin -ml-1 mr-2 h-4 w-4 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                      <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                      <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                    </svg>
+                    Cargando...
+                  </span>
+                ) : (
+                  "Descargar Plantas"
+                )}
               </motion.button>
               <motion.button
-                className="bg-[#959581] border border-[#2C3424]/20 text-white font-seasons-light text-[0.875rem] md:text-[1rem] uppercase tracking-[0.1em] py-[0.3rem] md:py-[0.375rem] px-[1.25rem] md:px-[1.5rem] rounded-full transition-all hover:bg-[#2C3424] w-fit"
+                className="bg-[#959581] border border-[#2C3424]/20 text-white font-seasons-light text-[0.875rem] md:text-[1rem] uppercase tracking-[0.1em] py-[0.3rem] md:py-[0.375rem] px-[1.25rem] md:px-[1.5rem] rounded-full transition-all hover:bg-[#2C3424] w-fit relative disabled:opacity-70"
                 custom={1.2}
                 variants={textFadeIn}
                 initial="hidden"
                 whileInView="visible"
                 viewport={{ once: true, margin: "-100px" }}
-                whileHover={{ scale: 1.03 }}
-                whileTap={{ scale: 0.98 }}
+                whileHover={{ scale: isBrochureLoading ? 1 : 1.03 }}
+                whileTap={{ scale: isBrochureLoading ? 1 : 0.98 }}
                 onClick={handleBrochureDownload}
                 aria-label="Descargar Brochure en PDF"
+                disabled={isBrochureLoading}
               >
-                Descargar Brochure
+                {isBrochureLoading ? (
+                  <span className="flex items-center justify-center">
+                    <svg className="animate-spin -ml-1 mr-2 h-4 w-4 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                      <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                      <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                    </svg>
+                    Cargando...
+                  </span>
+                ) : (
+                  "Descargar Brochure"
+                )}
               </motion.button>
             </div>
           </div>

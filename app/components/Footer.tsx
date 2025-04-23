@@ -219,8 +219,8 @@ const Footer = () => {
               <Image 
                 src="/logo/archmonkey_logo.svg" 
                 alt="Archmonkey" 
-                width={240}
-                height={50}
+                width={180}
+                height={38}
                 className="h-auto" 
                 priority
               />
@@ -428,8 +428,8 @@ const Footer = () => {
                   <Image
                     src="/logo/archmonkey_logo.svg" 
                     alt="Archmonkey" 
-                    width={240}
-                    height={50}
+                    width={180}
+                    height={38}
                     className="h-auto"
                     priority
                   />
