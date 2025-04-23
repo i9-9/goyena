@@ -94,9 +94,20 @@ const ContactForm = () => {
     setSubmitError('');
     
     try {
-      // Here you would typically send the form data to an API
-      // For now, we'll just simulate a successful submission
-      await new Promise(resolve => setTimeout(resolve, 1000));
+      // Send form data to our API endpoint
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      });
+      
+      const data = await response.json();
+      
+      if (!response.ok) {
+        throw new Error(data.error || 'Error al enviar el formulario');
+      }
       
       setSubmitSuccess(true);
       setFormData({
@@ -107,8 +118,9 @@ const ContactForm = () => {
         busqueda: '',
         mensaje: ''
       });
-    } catch {
-      setSubmitError('Hubo un error al enviar el formulario. Por favor intente nuevamente.');
+    } catch (error) {
+      setSubmitError(error instanceof Error ? error.message : 'Hubo un error al enviar el formulario. Por favor intente nuevamente.');
+      console.error('Error submitting form:', error);
     } finally {
       setIsSubmitting(false);
     }

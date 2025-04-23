@@ -36,6 +36,11 @@ This is the repository for the Goyena residential project website built with Nex
    NEXT_PUBLIC_CONTENTFUL_SPACE_ID=tjs1emf07vzj
    NEXT_PUBLIC_CONTENTFUL_ACCESS_TOKEN=GNTLd96GKnvz69kzesaxtHCMMziX7pN1K4sgVe3bvNc
    CONTENTFUL_PREVIEW_TOKEN=24sXCvxRZwR7YDsLzP2kraZ-8NInFCo8XQz2v8HOgiQ
+   
+   # Google Sheets (see docs/GOOGLE_SHEETS_SETUP.md for instructions)
+   GOOGLE_SERVICE_ACCOUNT_EMAIL=your-service-account-email@project-id.iam.gserviceaccount.com
+   GOOGLE_PRIVATE_KEY="-----BEGIN PRIVATE KEY-----\nYour private key...\n-----END PRIVATE KEY-----\n"
+   GOOGLE_SPREADSHEET_ID=your-spreadsheet-id
    ```
 
 4. Run the development server:
@@ -64,6 +69,30 @@ If you need to set up the content models in a new Contentful space, use the setu
    ```
 
 2. Follow the instructions in the [contentful-setup README](./contentful-setup/README.md) to configure and run the setup script.
+
+## Google Sheets Integration
+
+The contact form in this website automatically sends all submissions to a Google Sheets spreadsheet. This helps to manage and track inquiries efficiently.
+
+### Setting Up Google Sheets Integration
+
+To set up the Google Sheets integration:
+
+1. Follow the detailed instructions in [Google Sheets Setup Guide](./docs/GOOGLE_SHEETS_SETUP.md)
+2. Set the required environment variables in your `.env.local` file
+3. When deployed, add the same environment variables to your hosting platform
+
+### Form Data Structure
+
+The contact form collects and saves the following information to Google Sheets:
+
+- Fecha (Date of submission)
+- Nombre (First name)
+- Apellido (Last name)
+- Teléfono (Phone number)
+- Email
+- Búsqueda (What they're looking for)
+- Mensaje (Message)
 
 ## Development
 

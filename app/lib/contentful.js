@@ -29,6 +29,7 @@ export const getHeroImage = async () => {
     const entries = await safeGetEntries({
       content_type: 'heroImage',
       limit: 1,
+      include: 2  // Include linked assets up to 2 levels deep
     });
 
     return entries.items[0]?.fields || null;

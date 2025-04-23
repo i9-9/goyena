@@ -174,13 +174,36 @@ const Hero = () => {
     };
   }, []);
 
+  // Log heroImage details for debugging
+  useEffect(() => {
+    if (heroImage) {
+      console.log('Hero Image Details:', {
+        hasDesktopImage: !!(heroImage.image?.fields?.file?.url),
+        hasMobileImage: !!(heroImage.mobileImage?.fields?.file?.url),
+        isMobile,
+        desktopUrl: heroImage.image?.fields?.file?.url,
+        mobileUrl: heroImage.mobileImage?.fields?.file?.url
+      });
+    }
+  }, [heroImage, isMobile]);
+
   // Get hero image URL from Contentful or fallback to static assets
   const getHeroImageUrl = () => {
-    if (heroImage && heroImage.image && heroImage.image.fields && heroImage.image.fields.file) {
-      return `https:${heroImage.image.fields.file.url}`;
+    if (heroImage) {
+      // If mobile and mobile image exists
+      if (isMobile && heroImage.mobileImage && heroImage.mobileImage.fields && heroImage.mobileImage.fields.file) {
+        console.log('Using mobile image from Contentful');
+        return `https:${heroImage.mobileImage.fields.file.url}`;
+      }
+      // Use default image if available
+      if (heroImage.image && heroImage.image.fields && heroImage.image.fields.file) {
+        console.log('Using desktop image from Contentful');
+        return `https:${heroImage.image.fields.file.url}`;
+      }
     }
     
     // Fallback to static assets
+    console.log('Falling back to static images');
     return isMobile ? "/images/hero/mobile_hero.jpg" : "/images/hero/desktop.jpg";
   };
 
