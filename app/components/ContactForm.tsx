@@ -119,7 +119,7 @@ const ContactForm = () => {
       {/* Background Image */}
       <div className="absolute inset-0 z-0">
         <Image
-          src="/images/contact/bg_contact.png"
+          src="/images/contact/bg_contact.jpg"
           alt="Background"
           fill
           className="object-cover"

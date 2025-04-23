@@ -182,7 +182,7 @@ const Lista = () => {
       
       {/* Bottom section with text */}
       <motion.div 
-        className="absolute bottom-0 inset-x-0 h-1/2 z-10 flex flex-col justify-center items-center text-center text-white"
+        className="absolute bottom-0 inset-x-0 h-[54%] z-10 flex flex-col justify-center items-center text-center text-white"
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}
         transition={{ duration: 0.8, ease: "easeOut" }}
