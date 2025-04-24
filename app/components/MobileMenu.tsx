@@ -6,11 +6,11 @@ import { motion, AnimatePresence } from 'framer-motion';
 
 // Lista de items de navegación
 const NAV_ITEMS = [
-  { label: 'UBICACIÓN', href: '/ubicacion' },
-  { label: 'EL PROYECTO', href: '/proyecto' },
-  { label: 'GOYENA', href: '/' },
-  { label: 'DEPARTAMENTOS', href: '/unidades' },
-  { label: 'CONTACTO', href: '/contacto' },
+  { label: 'UBICACIÓN', href: '#ubicacion' },
+  { label: 'EL PROYECTO', href: '#proyecto' },
+  { label: 'GOYENA', href: '#hero' },
+  { label: 'DEPARTAMENTOS', href: '#unidades' },
+  { label: 'CONTACTO', href: '#contacto' },
 ];
 
 const MobileMenu = () => {
