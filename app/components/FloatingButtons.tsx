@@ -3,9 +3,79 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import Image from 'next/image';
+import { useContentful } from '../ContentfulProvider';
+
+// Definición del tipo para el campo RichText de Contentful
+interface RichTextContent {
+  content: Array<{
+    value: string;
+    nodeType?: string;
+  }>;
+  nodeType?: string;
+}
+
+interface RichTextField {
+  content: RichTextContent[];
+  nodeType: string;
+}
 
 const FloatingButtons = () => {
   const [showScrollButton, setShowScrollButton] = useState(false);
+  const [whatsappIconUrl, setWhatsappIconUrl] = useState("/images/buttons/whatsapp.svg");
+  const [scrollTopIconUrl, setScrollTopIconUrl] = useState("/images/buttons/scroll.svg");
+  const { logos } = useContentful();
+
+  // Process logos from Contentful
+  useEffect(() => {
+    console.log('FloatingButtons: Processing logos from ContentfulProvider, count:', logos.length);
+    
+    if (logos && logos.length > 0) {
+      logos.forEach(logo => {
+        // Check if logo has the necessary fields
+        if (!logo || !logo.logo || !logo.logo.fields || !logo.logo.fields.file) {
+          return;
+        }
+        
+        // Get type value - could be string or RichText
+        let typeValue = "";
+        if (typeof logo.type === 'string') {
+          // Type is a simple string
+          typeValue = logo.type;
+          console.log('FloatingButtons: Logo has string type:', typeValue);
+        } else if (logo.type && typeof logo.type === 'object') {
+          // Type might be RichText
+          try {
+            const richTextField = logo.type as unknown as RichTextField;
+            // Extract text from RichText if possible
+            if (richTextField && richTextField.content && richTextField.content.length > 0) {
+              const typeContent = richTextField.content[0];
+              if (typeContent.content && typeContent.content.length > 0) {
+                typeValue = typeContent.content[0]?.value || "";
+                console.log('FloatingButtons: Logo has RichText type:', typeValue);
+              }
+            }
+          } catch (error) {
+            console.error('FloatingButtons: Error extracting type from RichText:', error);
+          }
+        }
+        
+        // Get the URL
+        const url = logo.logo.fields.file.url;
+        const fullUrl = url.startsWith('//') ? `https:${url}` : url;
+        
+        // Assign to the appropriate state based on type
+        if (typeValue === 'social-whatsapp-float') {
+          console.log('FloatingButtons: Found WhatsApp float icon:', fullUrl);
+          setWhatsappIconUrl(fullUrl);
+        } else if (typeValue === 'ui-scrolltop') {
+          console.log('FloatingButtons: Found ScrollTop icon:', fullUrl);
+          setScrollTopIconUrl(fullUrl);
+        }
+      });
+    } else {
+      console.log('FloatingButtons: No logos found in ContentfulProvider');
+    }
+  }, [logos]);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -52,7 +122,7 @@ const FloatingButtons = () => {
             aria-label="Volver arriba"
           >
             <Image 
-              src="/images/buttons/scroll.svg"
+              src={scrollTopIconUrl}
               alt="Scroll to top"
               width={64}
               height={64}
@@ -74,7 +144,7 @@ const FloatingButtons = () => {
         onKeyDown={(e) => e.key === 'Enter' && handleWhatsAppClick()}
       >
         <Image 
-          src="/images/buttons/whatsapp.svg"
+          src={whatsappIconUrl}
           alt="WhatsApp"
           width={64}
           height={64}
