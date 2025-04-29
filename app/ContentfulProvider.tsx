@@ -1,7 +1,7 @@
 'use client';
 
 import { createContext, useContext, useEffect, useState, ReactNode } from 'react';
-import { getHeroImage, getProjectImage, getCarouselImages, getConstructionVideo } from './lib/contentful';
+import { getHeroImage, getProjectImage, getCarouselImages, getConstructionVideo, getLogos } from './lib/contentful';
 
 // Define interfaces for Contentful content types
 interface Asset {
@@ -69,12 +69,32 @@ interface ConstructionVideo {
   isVisible?: boolean;
 }
 
+interface Logo {
+  title: string;
+  description?: string;
+  logo: {
+    fields: Asset['fields'];
+  };
+  altText?: string;
+  type?: string | {
+    content: Array<{
+      content: Array<{
+        value: string;
+        nodeType?: string;
+      }>;
+      nodeType?: string;
+    }>;
+    nodeType: string;
+  }; // Puede ser string o RichText
+}
+
 // Define the context type with proper interfaces
 interface ContentfulContextType {
   heroImage: HeroImage | null;
   projectImage: ProjectImage | null;
   carouselImages: CarouselImage[];
   constructionVideo: ConstructionVideo | null;
+  logos: Logo[];
   loading: boolean;
   error: string | null;
 }
@@ -85,6 +105,7 @@ const ContentfulContext = createContext<ContentfulContextType>({
   projectImage: null,
   carouselImages: [],
   constructionVideo: null,
+  logos: [],
   loading: true,
   error: null,
 });
@@ -99,6 +120,7 @@ export default function ContentfulProvider({ children }: { children: ReactNode }
     projectImage: null,
     carouselImages: [],
     constructionVideo: null,
+    logos: [],
     loading: true,
     error: null,
   });
@@ -108,7 +130,7 @@ export default function ContentfulProvider({ children }: { children: ReactNode }
       try {
         console.log('Fetching data from Contentful...');
         // Fetch all data in parallel
-        const [heroImage, projectImage, carouselImages, constructionVideo] = await Promise.all([
+        const [heroImage, projectImage, carouselImages, constructionVideo, logos] = await Promise.all([
           getHeroImage().catch(err => {
             console.error('Error fetching hero image:', err);
             return null;
@@ -125,6 +147,10 @@ export default function ContentfulProvider({ children }: { children: ReactNode }
             console.error('Error fetching construction video:', err);
             return null;
           }),
+          getLogos().catch(err => {
+            console.error('Error fetching logos:', err);
+            return [];
+          }),
         ]);
 
         console.log('Data fetched successfully!');
@@ -132,12 +158,14 @@ export default function ContentfulProvider({ children }: { children: ReactNode }
         console.log('Project Image:', projectImage ? 'Available' : 'Not available');
         console.log('Carousel Images:', carouselImages.length);
         console.log('Construction Video:', constructionVideo ? 'Available' : 'Not available');
+        console.log('Logos:', logos.length);
 
         setContentfulData({
           heroImage,
           projectImage,
           carouselImages,
           constructionVideo,
+          logos,
           loading: false,
           error: null,
         });
@@ -149,6 +177,7 @@ export default function ContentfulProvider({ children }: { children: ReactNode }
           projectImage: null,
           carouselImages: [],
           constructionVideo: null,
+          logos: [],
           loading: false,
           error: error instanceof Error ? error.message : 'Unknown error',
         });

@@ -83,4 +83,19 @@ export const getConstructionVideo = async () => {
     console.error('Error fetching construction video:', error);
     return null;
   }
+};
+
+// Get logos from Contentful
+export const getLogos = async () => {
+  try {
+    const entries = await safeGetEntries({
+      content_type: 'logo',
+      include: 2
+    });
+
+    return entries.items.map(item => item.fields) || [];
+  } catch (error) {
+    console.error('Error fetching logos:', error);
+    return [];
+  }
 }; 
